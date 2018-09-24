@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SysNetCheatGUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("GDG")]
+[assembly: AssemblyCompany("Mengis Khan")]
 [assembly: AssemblyProduct("SysNetCheatGUI")]
-[assembly: AssemblyCopyright("Copyright © GDG 2018")]
+[assembly: AssemblyCopyright("Copyright © mleeneg 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.9.24131")]
