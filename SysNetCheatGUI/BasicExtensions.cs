@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SysNetCheatGUI
 {
@@ -27,6 +28,14 @@ namespace SysNetCheatGUI
             Array.Copy(bytes, array, count);
             return array;
         }
-        
+
+        public static int SelectedIndex(this ListView listView)
+        {
+            if (listView.SelectedIndices.Count > 0)
+                return listView.SelectedIndices[0];
+            else
+                return 0;
+        }
+
     }
 }

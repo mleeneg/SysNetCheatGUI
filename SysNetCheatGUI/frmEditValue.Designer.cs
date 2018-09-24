@@ -1,6 +1,6 @@
 ﻿namespace SysNetCheatGUI
 {
-    partial class frmEditValue
+    partial class FrmEditValue
     {
         /// <summary>
         /// Required designer variable.
@@ -82,7 +82,7 @@
             this.Controls.Add(this.txtValue);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmEditValue";
+            this.Name = "FrmEditValue";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

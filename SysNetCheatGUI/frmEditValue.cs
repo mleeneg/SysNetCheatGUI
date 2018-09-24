@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SysNetCheatGUI
 {
-    public partial class frmEditValue : Form
+    public partial class FrmEditValue : Form
     {
         public string Value = "";
-        public frmEditValue()
+        public FrmEditValue()
         {
             InitializeComponent();
         }

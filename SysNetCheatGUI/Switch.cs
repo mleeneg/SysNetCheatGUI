@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -25,6 +26,7 @@ namespace SysNetCheatGUI
         //Enable the Creation of the TCPClient
         public bool Connected;
         public bool IsNewSearch = true;
+
         public bool ClickedSearch = false;
         //Default port for the Swith
         public int SwitchPort = 5555;
@@ -38,14 +40,11 @@ namespace SysNetCheatGUI
         private BinaryWriter _bw;
 
         private Thread _listen;
-        private TextBox _txtConsole;
-        private ListBox _lbAddress;
-        public string sConsole = "";
-
-        public Switch(TextBox txtConsole,ListBox lbAddress)
+        private FrmMain _mainForm;
+        private string _sConsole;
+        public Switch(FrmMain mainForm)
         {
-            _txtConsole = txtConsole;
-            _lbAddress = lbAddress;
+            _mainForm = mainForm;
         }
 
         /// <summary>
@@ -70,8 +69,7 @@ namespace SysNetCheatGUI
                     _br = new BinaryReader(_stream);
                     _bw = new BinaryWriter(_stream);
                     //create thread and start it.
-                    _listen = new Thread(RecieveMessages);
-                    _listen.IsBackground = true;
+                    _listen = new Thread(RecieveMessages) {IsBackground = true};
                     _listen.Start();
                     //RecieveMessages();
                 }
@@ -94,11 +92,11 @@ namespace SysNetCheatGUI
                     byte[] buffer = new byte[1024];
                     _stream.Read(buffer, 0, buffer.Length);
 
-                    if (_txtConsole.InvokeRequired)
+                    if (_mainForm.txtConsole.InvokeRequired)
                     {
-                        _txtConsole.Invoke(new Action(() =>
+                        _mainForm.txtConsole.Invoke(new Action(() =>
                         {
-                            _txtConsole.AppendText(Encoding.Default.GetString(buffer));
+                            _mainForm.txtConsole.AppendText(Encoding.Default.GetString(buffer));
 
                         }));
                     }
@@ -106,32 +104,50 @@ namespace SysNetCheatGUI
                     {
                         if (ClickedSearch)
                         {
-                            sConsole = _txtConsole.Text;
-                            sConsole = sConsole.Replace("at ", "at 0x");
+                            _sConsole = _mainForm.txtConsole.Text;
+                            _sConsole = _sConsole.Replace("at ", "at 0x");
                             Regex r = new Regex(@"\b0x[0-9A-Fa-f]+\b");
-                            MatchCollection matchList = r.Matches(sConsole);
-                           
+                            MatchCollection matchList = r.Matches(_sConsole);
+
                             foreach (var value in matchList)
                             {
-                                if (_lbAddress.InvokeRequired)
+                                if (_mainForm.lvAddress.InvokeRequired)
                                 {
-                                    _lbAddress.Invoke(new Action(() =>
+                                    _mainForm.lvAddress.Invoke(new Action(() =>
                                     {
                                         string replaceAddress = value.ToString();
                                         replaceAddress = replaceAddress.Replace("0x", "");
-                                        _lbAddress.Items.Add(replaceAddress);
+                                        ListViewItem item = new ListViewItem(replaceAddress);
+                                        item.SubItems.Add(_mainForm.txtValue.Text);
+                                        _mainForm.lvAddress.Items.Add(item);
+
+                                        _mainForm.lblCountFound.Text =
+                                            (_mainForm.lvAddress.Items.Count < 0)
+                                            ? "0"
+                                            : _mainForm.lvAddress.Items.Count.ToString();
                                     }));
                                 }
                             }
                             ClickedSearch = false;
                         }
-                        
+
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
+                
+                Connected = false;
+                if (_mainForm.InvokeRequired)
+                {
+                    _mainForm.Invoke(new Action(() =>
+                    {
+                        _mainForm.EnableForm(false);
+                        _mainForm.MySwitch = null;
+                    }));
+                }
                 MessageBox.Show(e.ToString());
+
             }
         }
        

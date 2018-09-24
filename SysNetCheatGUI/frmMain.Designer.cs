@@ -1,6 +1,6 @@
 ﻿namespace SysNetCheatGUI
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.txtIPAddress = new System.Windows.Forms.TextBox();
             this.lblSwitchIPAddress = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -41,38 +41,52 @@
             this.radU16 = new System.Windows.Forms.RadioButton();
             this.radU8 = new System.Windows.Forms.RadioButton();
             this.btnConnectSwitch = new System.Windows.Forms.Button();
-            this.lbAddress = new System.Windows.Forms.ListBox();
             this.txtConsole = new System.Windows.Forms.TextBox();
-            this.clbAddresses = new System.Windows.Forms.CheckedListBox();
             this.lblConsole = new System.Windows.Forms.Label();
+            this.lvAddress = new System.Windows.Forms.ListView();
+            this.colAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvStoredAddresses = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openNotFinishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveNotFinishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsNotFinishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblFound = new System.Windows.Forms.Label();
+            this.lblCountFound = new System.Windows.Forms.Label();
             this.gbValueSize.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtIPAddress
             // 
-            this.txtIPAddress.Location = new System.Drawing.Point(104, 7);
-            this.txtIPAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIPAddress.Location = new System.Drawing.Point(138, 36);
             this.txtIPAddress.Name = "txtIPAddress";
-            this.txtIPAddress.Size = new System.Drawing.Size(98, 20);
+            this.txtIPAddress.Size = new System.Drawing.Size(130, 22);
             this.txtIPAddress.TabIndex = 0;
             this.txtIPAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIPAddress_KeyPress);
             // 
             // lblSwitchIPAddress
             // 
             this.lblSwitchIPAddress.AutoSize = true;
-            this.lblSwitchIPAddress.Location = new System.Drawing.Point(9, 7);
-            this.lblSwitchIPAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSwitchIPAddress.Location = new System.Drawing.Point(12, 36);
             this.lblSwitchIPAddress.Name = "lblSwitchIPAddress";
-            this.lblSwitchIPAddress.Size = new System.Drawing.Size(93, 13);
+            this.lblSwitchIPAddress.Size = new System.Drawing.Size(120, 17);
             this.lblSwitchIPAddress.TabIndex = 1;
             this.lblSwitchIPAddress.Text = "Switch IP Address";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(298, 37);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Location = new System.Drawing.Point(420, 72);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(89, 19);
+            this.btnSearch.Size = new System.Drawing.Size(143, 23);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -80,19 +94,17 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(243, 65);
-            this.txtValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtValue.Location = new System.Drawing.Point(324, 107);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(146, 20);
+            this.txtValue.Size = new System.Drawing.Size(239, 22);
             this.txtValue.TabIndex = 0;
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
             // btnNewSearch
             // 
-            this.btnNewSearch.Location = new System.Drawing.Point(208, 37);
-            this.btnNewSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewSearch.Location = new System.Drawing.Point(277, 72);
             this.btnNewSearch.Name = "btnNewSearch";
-            this.btnNewSearch.Size = new System.Drawing.Size(86, 19);
+            this.btnNewSearch.Size = new System.Drawing.Size(137, 23);
             this.btnNewSearch.TabIndex = 2;
             this.btnNewSearch.Text = "New Search";
             this.btnNewSearch.UseVisualStyleBackColor = true;
@@ -101,10 +113,9 @@
             // lblValue
             // 
             this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(206, 67);
-            this.lblValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblValue.Location = new System.Drawing.Point(274, 110);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(34, 13);
+            this.lblValue.Size = new System.Drawing.Size(44, 17);
             this.lblValue.TabIndex = 3;
             this.lblValue.Text = "Value";
             // 
@@ -114,11 +125,9 @@
             this.gbValueSize.Controls.Add(this.radU32);
             this.gbValueSize.Controls.Add(this.radU16);
             this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(208, 88);
-            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbValueSize.Location = new System.Drawing.Point(277, 135);
             this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbValueSize.Size = new System.Drawing.Size(180, 41);
+            this.gbValueSize.Size = new System.Drawing.Size(283, 51);
             this.gbValueSize.TabIndex = 4;
             this.gbValueSize.TabStop = false;
             this.gbValueSize.Text = "Value Size";
@@ -126,10 +135,9 @@
             // radU64
             // 
             this.radU64.AutoSize = true;
-            this.radU64.Location = new System.Drawing.Point(126, 17);
-            this.radU64.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU64.Location = new System.Drawing.Point(224, 21);
             this.radU64.Name = "radU64";
-            this.radU64.Size = new System.Drawing.Size(43, 17);
+            this.radU64.Size = new System.Drawing.Size(53, 21);
             this.radU64.TabIndex = 3;
             this.radU64.TabStop = true;
             this.radU64.Text = "u64";
@@ -138,10 +146,9 @@
             // radU32
             // 
             this.radU32.AutoSize = true;
-            this.radU32.Location = new System.Drawing.Point(86, 17);
-            this.radU32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU32.Location = new System.Drawing.Point(153, 21);
             this.radU32.Name = "radU32";
-            this.radU32.Size = new System.Drawing.Size(43, 17);
+            this.radU32.Size = new System.Drawing.Size(53, 21);
             this.radU32.TabIndex = 2;
             this.radU32.TabStop = true;
             this.radU32.Text = "u32";
@@ -150,10 +157,9 @@
             // radU16
             // 
             this.radU16.AutoSize = true;
-            this.radU16.Location = new System.Drawing.Point(46, 17);
-            this.radU16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU16.Location = new System.Drawing.Point(84, 21);
             this.radU16.Name = "radU16";
-            this.radU16.Size = new System.Drawing.Size(43, 17);
+            this.radU16.Size = new System.Drawing.Size(53, 21);
             this.radU16.TabIndex = 1;
             this.radU16.TabStop = true;
             this.radU16.Text = "u16";
@@ -162,10 +168,9 @@
             // radU8
             // 
             this.radU8.AutoSize = true;
-            this.radU8.Location = new System.Drawing.Point(13, 17);
-            this.radU8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU8.Location = new System.Drawing.Point(17, 21);
             this.radU8.Name = "radU8";
-            this.radU8.Size = new System.Drawing.Size(37, 17);
+            this.radU8.Size = new System.Drawing.Size(45, 21);
             this.radU8.TabIndex = 0;
             this.radU8.TabStop = true;
             this.radU8.Text = "u8";
@@ -173,68 +178,183 @@
             // 
             // btnConnectSwitch
             // 
-            this.btnConnectSwitch.Location = new System.Drawing.Point(208, 7);
-            this.btnConnectSwitch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnectSwitch.Location = new System.Drawing.Point(277, 36);
             this.btnConnectSwitch.Name = "btnConnectSwitch";
-            this.btnConnectSwitch.Size = new System.Drawing.Size(180, 19);
+            this.btnConnectSwitch.Size = new System.Drawing.Size(286, 23);
             this.btnConnectSwitch.TabIndex = 5;
             this.btnConnectSwitch.Text = "Connect";
             this.btnConnectSwitch.UseVisualStyleBackColor = true;
             this.btnConnectSwitch.Click += new System.EventHandler(this.btnConnectSwitch_Click);
             // 
-            // lbAddress
-            // 
-            this.lbAddress.ColumnWidth = 15;
-            this.lbAddress.FormattingEnabled = true;
-            this.lbAddress.Items.AddRange(new object[] {
-            "Address; Value"});
-            this.lbAddress.Location = new System.Drawing.Point(9, 36);
-            this.lbAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.lbAddress.MultiColumn = true;
-            this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Size = new System.Drawing.Size(193, 225);
-            this.lbAddress.TabIndex = 8;
-            this.lbAddress.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbAddress_MouseDoubleClick);
-            // 
             // txtConsole
             // 
             this.txtConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsole.Location = new System.Drawing.Point(209, 148);
-            this.txtConsole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtConsole.Location = new System.Drawing.Point(274, 209);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtConsole.Size = new System.Drawing.Size(180, 251);
+            this.txtConsole.Size = new System.Drawing.Size(289, 139);
             this.txtConsole.TabIndex = 9;
-            // 
-            // clbAddresses
-            // 
-            this.clbAddresses.FormattingEnabled = true;
-            this.clbAddresses.Location = new System.Drawing.Point(9, 275);
-            this.clbAddresses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.clbAddresses.Name = "clbAddresses";
-            this.clbAddresses.Size = new System.Drawing.Size(193, 124);
-            this.clbAddresses.TabIndex = 11;
             // 
             // lblConsole
             // 
             this.lblConsole.AutoSize = true;
-            this.lblConsole.Location = new System.Drawing.Point(206, 132);
-            this.lblConsole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblConsole.Location = new System.Drawing.Point(274, 189);
             this.lblConsole.Name = "lblConsole";
-            this.lblConsole.Size = new System.Drawing.Size(45, 13);
+            this.lblConsole.Size = new System.Drawing.Size(59, 17);
             this.lblConsole.TabIndex = 12;
             this.lblConsole.Text = "Console";
             // 
-            // frmMain
+            // lvAddress
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.lvAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colAddress,
+            this.colValue});
+            this.lvAddress.GridLines = true;
+            this.lvAddress.Location = new System.Drawing.Point(12, 73);
+            this.lvAddress.Name = "lvAddress";
+            this.lvAddress.Size = new System.Drawing.Size(254, 275);
+            this.lvAddress.TabIndex = 13;
+            this.lvAddress.UseCompatibleStateImageBehavior = false;
+            this.lvAddress.View = System.Windows.Forms.View.Details;
+            this.lvAddress.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvAddress_MouseDoubleClick);
+            // 
+            // colAddress
+            // 
+            this.colAddress.Text = "Address";
+            this.colAddress.Width = 93;
+            // 
+            // colValue
+            // 
+            this.colValue.Text = "Value";
+            this.colValue.Width = 100;
+            // 
+            // lvStoredAddresses
+            // 
+            this.lvStoredAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvStoredAddresses.CheckBoxes = true;
+            this.lvStoredAddresses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader1});
+            this.lvStoredAddresses.GridLines = true;
+            this.lvStoredAddresses.Location = new System.Drawing.Point(12, 354);
+            this.lvStoredAddresses.Name = "lvStoredAddresses";
+            this.lvStoredAddresses.Size = new System.Drawing.Size(551, 186);
+            this.lvStoredAddresses.TabIndex = 14;
+            this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
+            this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Freeze";
+            this.columnHeader4.Width = 55;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Address";
+            this.columnHeader5.Width = 100;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Name";
+            this.columnHeader6.Width = 130;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Value Type";
+            this.columnHeader7.Width = 71;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Value";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(572, 28);
+            this.menuStrip1.TabIndex = 15;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openNotFinishedToolStripMenuItem,
+            this.saveNotFinishedToolStripMenuItem,
+            this.saveAsNotFinishedToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openNotFinishedToolStripMenuItem
+            // 
+            this.openNotFinishedToolStripMenuItem.Name = "openNotFinishedToolStripMenuItem";
+            this.openNotFinishedToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.openNotFinishedToolStripMenuItem.Text = "&Open  -Not Finished";
+            // 
+            // saveNotFinishedToolStripMenuItem
+            // 
+            this.saveNotFinishedToolStripMenuItem.Name = "saveNotFinishedToolStripMenuItem";
+            this.saveNotFinishedToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveNotFinishedToolStripMenuItem.Text = "&Save  -Not Finished";
+            // 
+            // saveAsNotFinishedToolStripMenuItem
+            // 
+            this.saveAsNotFinishedToolStripMenuItem.Name = "saveAsNotFinishedToolStripMenuItem";
+            this.saveAsNotFinishedToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveAsNotFinishedToolStripMenuItem.Text = "Save As - Not Finished";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // lblFound
+            // 
+            this.lblFound.AutoSize = true;
+            this.lblFound.Location = new System.Drawing.Point(12, 53);
+            this.lblFound.Name = "lblFound";
+            this.lblFound.Size = new System.Drawing.Size(48, 17);
+            this.lblFound.TabIndex = 16;
+            this.lblFound.Text = "Found";
+            // 
+            // lblCountFound
+            // 
+            this.lblCountFound.AutoSize = true;
+            this.lblCountFound.Location = new System.Drawing.Point(60, 53);
+            this.lblCountFound.Name = "lblCountFound";
+            this.lblCountFound.Size = new System.Drawing.Size(16, 17);
+            this.lblCountFound.TabIndex = 17;
+            this.lblCountFound.Text = "0";
+            // 
+            // FrmMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 410);
+            this.ClientSize = new System.Drawing.Size(572, 552);
+            this.Controls.Add(this.lblCountFound);
+            this.Controls.Add(this.lblFound);
+            this.Controls.Add(this.lvStoredAddresses);
+            this.Controls.Add(this.lvAddress);
             this.Controls.Add(this.lblConsole);
-            this.Controls.Add(this.clbAddresses);
             this.Controls.Add(this.txtConsole);
-            this.Controls.Add(this.lbAddress);
             this.Controls.Add(this.btnConnectSwitch);
             this.Controls.Add(this.gbValueSize);
             this.Controls.Add(this.lblValue);
@@ -243,13 +363,17 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblSwitchIPAddress);
             this.Controls.Add(this.txtIPAddress);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "frmMain";
-            this.Text = "sys-netcheat GUI";
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "FrmMain";
+            this.Text = "SysNetCheatGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.gbValueSize.ResumeLayout(false);
             this.gbValueSize.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,7 +384,6 @@
         private System.Windows.Forms.TextBox txtIPAddress;
         private System.Windows.Forms.Label lblSwitchIPAddress;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.Button btnNewSearch;
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.GroupBox gbValueSize;
@@ -269,10 +392,27 @@
         private System.Windows.Forms.RadioButton radU16;
         private System.Windows.Forms.RadioButton radU8;
         private System.Windows.Forms.Button btnConnectSwitch;
-        private System.Windows.Forms.ListBox lbAddress;
-        private System.Windows.Forms.TextBox txtConsole;
-        private System.Windows.Forms.CheckedListBox clbAddresses;
         private System.Windows.Forms.Label lblConsole;
+        private System.Windows.Forms.ColumnHeader colAddress;
+        private System.Windows.Forms.ColumnHeader colValue;
+        private System.Windows.Forms.ListView lvStoredAddresses;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openNotFinishedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveNotFinishedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsNotFinishedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Label lblFound;
+        public System.Windows.Forms.TextBox txtValue;
+        public System.Windows.Forms.TextBox txtConsole;
+        public System.Windows.Forms.ListView lvAddress;
+        public System.Windows.Forms.Label lblCountFound;
     }
 }
 

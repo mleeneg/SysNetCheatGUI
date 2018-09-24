@@ -15,70 +15,46 @@ using System.Text.RegularExpressions;
 
 namespace SysNetCheatGUI
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
         public Switch MySwitch;
-        
-        public bool OkayToStartSearch = false;
-        
 
-        public frmMain()
+        public bool OkayToStartSearch = false;
+
+
+        public FrmMain()
         {
             InitializeComponent();
-            
-            btnNewSearch.Enabled = false;
-            btnSearch.Enabled = false;
-            txtValue.Enabled = false;
-            gbValueSize.Enabled = false;
-            lbAddress.Enabled = false;
-            clbAddresses.Enabled = false;
+            //MySwitch = new Switch(txtConsole, lvAddress,txtValue.Text);
             radU32.Checked = true;
             txtIPAddress.Text = "192.168.1.140";
-            txtValue.Text = "638";
         }
 
         private void btnConnectSwitch_Click(object sender, EventArgs e)
         {
             if (MySwitch == null)
             {
-                MySwitch = new Switch(txtConsole, lbAddress);
-                if (!MySwitch.SwitchSocket.Connected)
+                MySwitch = new Switch(this);
+                if (!MySwitch.Connected)
                 {
                     string ip = txtIPAddress.Text;
                     MySwitch.Connect(ip);
                     if (MySwitch.SwitchSocket.Connected)
                     {
-                        btnNewSearch.Enabled = true;
-                        btnSearch.Enabled = true;
-                        txtValue.Enabled = true;
-                        gbValueSize.Enabled = true;
-                        lbAddress.Enabled = true;
-                        clbAddresses.Enabled = true;
+                        EnableForm(true);
                     }
                 }
             }
             else
             {
-                if (!MySwitch.SwitchSocket.Connected)
-                {
-                    string ip = txtIPAddress.Text;
-                    MySwitch.Connect(ip);
-                    if (MySwitch.SwitchSocket.Connected)
-                    {
-                        btnNewSearch.Enabled = true;
-                        btnSearch.Enabled = true;
-                        txtValue.Enabled = true;
-                        gbValueSize.Enabled = true;
-                        lbAddress.Enabled = true;
-                        clbAddresses.Enabled = true;
-                    }
-                }
+                //MySwitch = null;
+                MessageBox.Show(this, "Cannot Connect");
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
+
             MySwitch.ClickedSearch = true;
             if (GetSearchSize() != "X_X")
             {
@@ -89,18 +65,31 @@ namespace SysNetCheatGUI
                 MessageBox.Show("Select a Search Value Size.");
             }
 
-            if (MySwitch.SwitchSocket.Connected && OkayToStartSearch)
+            if (txtValue.Text != null || txtValue.Text.Trim().Equals(""))
             {
-
-                lbAddress.Items.Clear();
-                txtConsole.Clear();
-                //Send Command
-                string searchString = MySwitch.SearchString(GetSearchSize(), txtValue.Text);
-                MySwitch.SendPacket(Encoding.Default.GetBytes(searchString));
-                //clear the write buffer
-                MySwitch.ClearWriteBuffer();
+                if (MySwitch.SwitchSocket.Connected && OkayToStartSearch)
+                {
+                    gbValueSize.Enabled = false;
+                    lvAddress.Items.Clear();
+                    txtConsole.Clear();
+                    //Send Command
+                    string searchString = MySwitch.SearchString(GetSearchSize(), txtValue.Text);
+                    MySwitch.SendPacket(Encoding.Default.GetBytes(searchString));
+                    //clear the write buffer
+                    MySwitch.ClearWriteBuffer();
+                }
             }
-            
+
+        }
+
+        public void EnableForm(bool b)
+        {
+
+            btnNewSearch.Enabled = b;
+            btnSearch.Enabled = b;
+            txtValue.Enabled = b;
+            gbValueSize.Enabled = b;
+            lvAddress.Enabled = b;
         }
 
         /// <summary>
@@ -124,6 +113,7 @@ namespace SysNetCheatGUI
         private void btnNewSearch_Click(object sender, EventArgs e)
         {
             MySwitch.IsNewSearch = true;
+            gbValueSize.Enabled = true;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -131,90 +121,104 @@ namespace SysNetCheatGUI
             //MySwitch.Disconnect();
         }
 
-        public static byte[] ReadFully(Stream stream, TextBox text)
+        private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            byte[] buffer = new byte[32768];
-            using (MemoryStream ms = new MemoryStream())
+            if (e.KeyChar == (char) 13)
             {
-                while (true)
-                {
-                    int read = stream.Read(buffer, 0, buffer.Length);
-                    if (read <= 0)
-                        return ms.ToArray();
-                    ms.Write(buffer, 0, read);
-                }
+                btnSearch_Click(sender, e);
             }
         }
 
-        public byte[] ReadAllBytes(Stream stream)
+        private void txtIPAddress_KeyPress(object sender, KeyPressEventArgs e)
         {
-            using (var ms = new MemoryStream())
+            if (e.KeyChar == (char) 13)
             {
-                stream.CopyTo(ms);
-                return ms.ToArray();
+                btnConnectSwitch_Click(sender, e);
             }
         }
 
-        private void lbAddress_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lvAddress_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = this.lbAddress.IndexFromPoint(e.Location);
-            if (index != System.Windows.Forms.ListBox.NoMatches)
-            {
-                using (frmEditValue editValue = new frmEditValue())
+            AddAddress();
+        }
+
+        private void AddAddress()
+        {
+            int index = lvAddress.SelectedIndex();
+
+                using (FrmEditValue editValue = new FrmEditValue())
                 {
                     if (editValue.ShowDialog() == DialogResult.OK)
                     {
                         //Check if address exist
-                        if(clbAddresses.Items.Count > 0)
+                        //Get Stored Address Count
+                        //If more than 0 
+                        if (lvStoredAddresses.Items.Count > 0)
                         {
-                            for (int i = 0; i < clbAddresses.Items.Count; i++)
+                            //Loop thru the addresses
+                            for (int i = 0; i < lvStoredAddresses.Items.Count; i++)
                             {
-                                string address = clbAddresses.Items[i].ToString();
+                                string address = lvStoredAddresses.Items[i].ToString();
                                 address = address.Split(' ')[0];
-                                if (lbAddress.Items[index].ToString() == address)
+                                //If address found
+                                if (lvAddress.Items[index].SubItems[0].Text == address)
                                 {
-                                    clbAddresses.Items[i] = lbAddress.Items[index].ToString() + " : " + editValue.Value;
+                                    //Edit Existing Address
+                                    lvStoredAddresses.Items[i].SubItems[4].Text = editValue.Value;
 
                                 }
                                 else
                                 {
-                                    clbAddresses.Items.Add(lbAddress.Items[index].ToString() + " : " + editValue.Value);
+                                    //Else Add a new Address
+                                    lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text,"",GetSearchSize(),editValue.Value));
                                 }
                             }
                         }
                         else
                         {
-                            clbAddresses.Items.Add(lbAddress.Items[index].ToString() + " : " + editValue.Value);
-                        }
-                        string command = MySwitch.Command(Commands.PokeAddress, lbAddress.Items[index].ToString(),
+                        //Else Add a new Address
+                        lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text, "", GetSearchSize(), editValue.Value));
+                    }
+                        string command = MySwitch.Command(Commands.PokeAddress, lvAddress.Items[index].SubItems[0].Text,
                             GetSearchSize(), editValue.Value, "");
                         byte[] byteCommand = Encoding.Default.GetBytes(command);
                         MySwitch.SendPacket(byteCommand);
                         MySwitch.ClearWriteBuffer();
                     }
                 }
-                    
-               
-            }
         }
 
-        private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
+        private ListViewItem AddListViewItem(string address, string name, string valueType, string value)
         {
-            if (MySwitch.Connected)
-            {
-                if (e.KeyChar == (char)13)
-                {
-                    btnSearch_Click(sender, e);
-                }
-            }
+            //Create new Instance of Object
+            //Declearing it empty so subset 0 is a checkbox.
+            ListViewItem item = new ListViewItem();
+
+            //Add to Item subset 1 Address
+            item.SubItems.Add(address);
+
+            //Add to Item subset 2 Name
+            item.SubItems.Add(name);
+
+            //Add to Item subset 3 ValueType
+            item.SubItems.Add(valueType);
+
+            //Add to Item subset 4 Value
+            item.SubItems.Add(value);
+
+            return item;
+
         }
 
-        private void txtIPAddress_KeyPress(object sender, KeyPressEventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)13)
-            {
-                btnConnectSwitch_Click(sender, e);
-            }
+            this.Close();
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            EnableForm(false);
+            ;
         }
     }
 }
