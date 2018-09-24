@@ -25,7 +25,6 @@ namespace SysNetCheatGUI
         //Enable the Creation of the TCPClient
         public bool Connected;
         public bool IsNewSearch = true;
-
         public bool ClickedSearch = false;
         //Default port for the Swith
         public int SwitchPort = 5555;

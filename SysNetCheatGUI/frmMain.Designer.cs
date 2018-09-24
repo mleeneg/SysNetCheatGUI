@@ -50,26 +50,29 @@
             // 
             // txtIPAddress
             // 
-            this.txtIPAddress.Location = new System.Drawing.Point(138, 9);
+            this.txtIPAddress.Location = new System.Drawing.Point(104, 7);
+            this.txtIPAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtIPAddress.Name = "txtIPAddress";
-            this.txtIPAddress.Size = new System.Drawing.Size(130, 22);
+            this.txtIPAddress.Size = new System.Drawing.Size(98, 20);
             this.txtIPAddress.TabIndex = 0;
             this.txtIPAddress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIPAddress_KeyPress);
             // 
             // lblSwitchIPAddress
             // 
             this.lblSwitchIPAddress.AutoSize = true;
-            this.lblSwitchIPAddress.Location = new System.Drawing.Point(12, 9);
+            this.lblSwitchIPAddress.Location = new System.Drawing.Point(9, 7);
+            this.lblSwitchIPAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSwitchIPAddress.Name = "lblSwitchIPAddress";
-            this.lblSwitchIPAddress.Size = new System.Drawing.Size(120, 17);
+            this.lblSwitchIPAddress.Size = new System.Drawing.Size(93, 13);
             this.lblSwitchIPAddress.TabIndex = 1;
             this.lblSwitchIPAddress.Text = "Switch IP Address";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(398, 45);
+            this.btnSearch.Location = new System.Drawing.Point(298, 37);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(119, 23);
+            this.btnSearch.Size = new System.Drawing.Size(89, 19);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -77,17 +80,19 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(324, 80);
+            this.txtValue.Location = new System.Drawing.Point(243, 65);
+            this.txtValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(193, 22);
+            this.txtValue.Size = new System.Drawing.Size(146, 20);
             this.txtValue.TabIndex = 0;
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
             // btnNewSearch
             // 
-            this.btnNewSearch.Location = new System.Drawing.Point(277, 45);
+            this.btnNewSearch.Location = new System.Drawing.Point(208, 37);
+            this.btnNewSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnNewSearch.Name = "btnNewSearch";
-            this.btnNewSearch.Size = new System.Drawing.Size(115, 23);
+            this.btnNewSearch.Size = new System.Drawing.Size(86, 19);
             this.btnNewSearch.TabIndex = 2;
             this.btnNewSearch.Text = "New Search";
             this.btnNewSearch.UseVisualStyleBackColor = true;
@@ -96,9 +101,10 @@
             // lblValue
             // 
             this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(274, 83);
+            this.lblValue.Location = new System.Drawing.Point(206, 67);
+            this.lblValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(44, 17);
+            this.lblValue.Size = new System.Drawing.Size(34, 13);
             this.lblValue.TabIndex = 3;
             this.lblValue.Text = "Value";
             // 
@@ -108,9 +114,11 @@
             this.gbValueSize.Controls.Add(this.radU32);
             this.gbValueSize.Controls.Add(this.radU16);
             this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(277, 108);
+            this.gbValueSize.Location = new System.Drawing.Point(208, 88);
+            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Size = new System.Drawing.Size(240, 51);
+            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbValueSize.Size = new System.Drawing.Size(180, 41);
             this.gbValueSize.TabIndex = 4;
             this.gbValueSize.TabStop = false;
             this.gbValueSize.Text = "Value Size";
@@ -118,9 +126,10 @@
             // radU64
             // 
             this.radU64.AutoSize = true;
-            this.radU64.Location = new System.Drawing.Point(168, 21);
+            this.radU64.Location = new System.Drawing.Point(126, 17);
+            this.radU64.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radU64.Name = "radU64";
-            this.radU64.Size = new System.Drawing.Size(53, 21);
+            this.radU64.Size = new System.Drawing.Size(43, 17);
             this.radU64.TabIndex = 3;
             this.radU64.TabStop = true;
             this.radU64.Text = "u64";
@@ -129,9 +138,10 @@
             // radU32
             // 
             this.radU32.AutoSize = true;
-            this.radU32.Location = new System.Drawing.Point(115, 21);
+            this.radU32.Location = new System.Drawing.Point(86, 17);
+            this.radU32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radU32.Name = "radU32";
-            this.radU32.Size = new System.Drawing.Size(53, 21);
+            this.radU32.Size = new System.Drawing.Size(43, 17);
             this.radU32.TabIndex = 2;
             this.radU32.TabStop = true;
             this.radU32.Text = "u32";
@@ -140,9 +150,10 @@
             // radU16
             // 
             this.radU16.AutoSize = true;
-            this.radU16.Location = new System.Drawing.Point(62, 21);
+            this.radU16.Location = new System.Drawing.Point(46, 17);
+            this.radU16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radU16.Name = "radU16";
-            this.radU16.Size = new System.Drawing.Size(53, 21);
+            this.radU16.Size = new System.Drawing.Size(43, 17);
             this.radU16.TabIndex = 1;
             this.radU16.TabStop = true;
             this.radU16.Text = "u16";
@@ -151,9 +162,10 @@
             // radU8
             // 
             this.radU8.AutoSize = true;
-            this.radU8.Location = new System.Drawing.Point(17, 21);
+            this.radU8.Location = new System.Drawing.Point(13, 17);
+            this.radU8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radU8.Name = "radU8";
-            this.radU8.Size = new System.Drawing.Size(45, 21);
+            this.radU8.Size = new System.Drawing.Size(37, 17);
             this.radU8.TabIndex = 0;
             this.radU8.TabStop = true;
             this.radU8.Text = "u8";
@@ -161,9 +173,10 @@
             // 
             // btnConnectSwitch
             // 
-            this.btnConnectSwitch.Location = new System.Drawing.Point(277, 9);
+            this.btnConnectSwitch.Location = new System.Drawing.Point(208, 7);
+            this.btnConnectSwitch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnConnectSwitch.Name = "btnConnectSwitch";
-            this.btnConnectSwitch.Size = new System.Drawing.Size(240, 23);
+            this.btnConnectSwitch.Size = new System.Drawing.Size(180, 19);
             this.btnConnectSwitch.TabIndex = 5;
             this.btnConnectSwitch.Text = "Connect";
             this.btnConnectSwitch.UseVisualStyleBackColor = true;
@@ -171,46 +184,53 @@
             // 
             // lbAddress
             // 
+            this.lbAddress.ColumnWidth = 15;
             this.lbAddress.FormattingEnabled = true;
-            this.lbAddress.ItemHeight = 16;
-            this.lbAddress.Location = new System.Drawing.Point(12, 44);
+            this.lbAddress.Items.AddRange(new object[] {
+            "Address; Value"});
+            this.lbAddress.Location = new System.Drawing.Point(9, 36);
+            this.lbAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbAddress.MultiColumn = true;
             this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Size = new System.Drawing.Size(256, 276);
+            this.lbAddress.Size = new System.Drawing.Size(193, 225);
             this.lbAddress.TabIndex = 8;
             this.lbAddress.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbAddress_MouseDoubleClick);
             // 
             // txtConsole
             // 
             this.txtConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsole.Location = new System.Drawing.Point(274, 182);
+            this.txtConsole.Location = new System.Drawing.Point(209, 148);
+            this.txtConsole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtConsole.Size = new System.Drawing.Size(243, 314);
+            this.txtConsole.Size = new System.Drawing.Size(180, 251);
             this.txtConsole.TabIndex = 9;
             // 
             // clbAddresses
             // 
             this.clbAddresses.FormattingEnabled = true;
-            this.clbAddresses.Location = new System.Drawing.Point(12, 339);
+            this.clbAddresses.Location = new System.Drawing.Point(9, 275);
+            this.clbAddresses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.clbAddresses.Name = "clbAddresses";
-            this.clbAddresses.Size = new System.Drawing.Size(256, 157);
+            this.clbAddresses.Size = new System.Drawing.Size(193, 124);
             this.clbAddresses.TabIndex = 11;
             // 
             // lblConsole
             // 
             this.lblConsole.AutoSize = true;
-            this.lblConsole.Location = new System.Drawing.Point(274, 162);
+            this.lblConsole.Location = new System.Drawing.Point(206, 132);
+            this.lblConsole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblConsole.Name = "lblConsole";
-            this.lblConsole.Size = new System.Drawing.Size(59, 17);
+            this.lblConsole.Size = new System.Drawing.Size(45, 13);
             this.lblConsole.TabIndex = 12;
             this.lblConsole.Text = "Console";
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 505);
+            this.ClientSize = new System.Drawing.Size(397, 410);
             this.Controls.Add(this.lblConsole);
             this.Controls.Add(this.clbAddresses);
             this.Controls.Add(this.txtConsole);
@@ -224,6 +244,7 @@
             this.Controls.Add(this.lblSwitchIPAddress);
             this.Controls.Add(this.txtIPAddress);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
             this.Text = "sys-netcheat GUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

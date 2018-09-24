@@ -25,7 +25,13 @@ namespace SysNetCheatGUI
         public frmMain()
         {
             InitializeComponent();
-            MySwitch = new Switch(txtConsole,lbAddress);
+            
+            btnNewSearch.Enabled = false;
+            btnSearch.Enabled = false;
+            txtValue.Enabled = false;
+            gbValueSize.Enabled = false;
+            lbAddress.Enabled = false;
+            clbAddresses.Enabled = false;
             radU32.Checked = true;
             txtIPAddress.Text = "192.168.1.140";
             txtValue.Text = "638";
@@ -33,10 +39,40 @@ namespace SysNetCheatGUI
 
         private void btnConnectSwitch_Click(object sender, EventArgs e)
         {
-            if (!MySwitch.SwitchSocket.Connected)
+            if (MySwitch == null)
             {
-                string ip = txtIPAddress.Text;
-                MySwitch.Connect(ip);
+                MySwitch = new Switch(txtConsole, lbAddress);
+                if (!MySwitch.SwitchSocket.Connected)
+                {
+                    string ip = txtIPAddress.Text;
+                    MySwitch.Connect(ip);
+                    if (MySwitch.SwitchSocket.Connected)
+                    {
+                        btnNewSearch.Enabled = true;
+                        btnSearch.Enabled = true;
+                        txtValue.Enabled = true;
+                        gbValueSize.Enabled = true;
+                        lbAddress.Enabled = true;
+                        clbAddresses.Enabled = true;
+                    }
+                }
+            }
+            else
+            {
+                if (!MySwitch.SwitchSocket.Connected)
+                {
+                    string ip = txtIPAddress.Text;
+                    MySwitch.Connect(ip);
+                    if (MySwitch.SwitchSocket.Connected)
+                    {
+                        btnNewSearch.Enabled = true;
+                        btnSearch.Enabled = true;
+                        txtValue.Enabled = true;
+                        gbValueSize.Enabled = true;
+                        lbAddress.Enabled = true;
+                        clbAddresses.Enabled = true;
+                    }
+                }
             }
         }
 
@@ -92,7 +128,7 @@ namespace SysNetCheatGUI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MySwitch.Disconnect();
+            //MySwitch.Disconnect();
         }
 
         public static byte[] ReadFully(Stream stream, TextBox text)
@@ -164,9 +200,12 @@ namespace SysNetCheatGUI
 
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) 13)
+            if (MySwitch.Connected)
             {
-                btnSearch_Click(sender,e);
+                if (e.KeyChar == (char)13)
+                {
+                    btnSearch_Click(sender, e);
+                }
             }
         }
 
