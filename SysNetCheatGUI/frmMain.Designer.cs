@@ -290,7 +290,7 @@
             this.editNameToolStripMenuItem,
             this.editValueToolStripMenuItem});
             this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(211, 80);
+            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
             // 
             // editNameToolStripMenuItem
             // 
@@ -359,6 +359,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // lblFound
             // 
