@@ -257,6 +257,7 @@
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
+            this.lvStoredAddresses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseDoubleClick);
             // 
             // columnHeader4
             // 

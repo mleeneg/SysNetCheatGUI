@@ -148,7 +148,7 @@ namespace SysNetCheatGUI
             {
                 MessageBox.Show(this.Owner, "Could not delete address.");
             }
-            
+
         }
 
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -283,14 +283,16 @@ namespace SysNetCheatGUI
                 if (!found)
                 {
                     //Else Add a new Address
-                    lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name, frmAddAddress.ValueSize,
+                    lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name,
+                        frmAddAddress.ValueSize,
                         frmAddAddress.Value));
                 }
             }
             else
             {
                 //Else Add a new Address
-                lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name, frmAddAddress.ValueSize,
+                lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name,
+                    frmAddAddress.ValueSize,
                     frmAddAddress.Value));
             }
 
@@ -307,7 +309,7 @@ namespace SysNetCheatGUI
                 {
                     //Edit Existing Address
                     lvStoredAddresses.Items[index].SubItems[5].Text = editValue.Value;
-                    
+
                     MySwitch.SendCommand(Commands.PokeAddress, "", lvStoredAddresses.Items[index].SubItems[2].Text,
                         GetSearchSize(), editValue.Value);
                 }
@@ -349,6 +351,21 @@ namespace SysNetCheatGUI
 
             return item;
 
+        }
+
+        private void lvStoredAddresses_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = lvStoredAddresses.SelectedIndex();
+                MySwitch.SendCommand(Commands.PokeAddress, lvStoredAddresses.Items[index].SubItems[1].Text,
+                    lvStoredAddresses.Items[index].SubItems[2].Text, lvStoredAddresses.Items[index].SubItems[4].Text,
+                    lvStoredAddresses.Items[index].SubItems[5].Text);
+            }
+            catch
+            {
+                MessageBox.Show("Could not send command");
+            }
         }
     }
 }
