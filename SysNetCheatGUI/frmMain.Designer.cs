@@ -196,6 +196,8 @@
             // 
             // txtConsole
             // 
+            this.txtConsole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConsole.Location = new System.Drawing.Point(272, 132);
             this.txtConsole.Multiline = true;
@@ -206,6 +208,8 @@
             // 
             // lvAddress
             // 
+            this.lvAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lvAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colAddress,
             this.colValue});
@@ -295,7 +299,7 @@
             // editNameToolStripMenuItem
             // 
             this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
-            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
             this.editNameToolStripMenuItem.Text = "Edit Name";
             this.editNameToolStripMenuItem.Click += new System.EventHandler(this.editNameToolStripMenuItem_Click);
             // 
@@ -431,8 +435,11 @@
             this.Controls.Add(this.lblSwitchIPAddress);
             this.Controls.Add(this.txtIPAddress);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmMain";
             this.Text = "SysNetCheatGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

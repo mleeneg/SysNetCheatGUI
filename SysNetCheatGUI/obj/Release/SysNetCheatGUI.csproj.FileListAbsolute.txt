@@ -1,0 +1,11 @@
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Release\SysNetCheatGUI.exe.config
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Release\SysNetCheatGUI.exe
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Release\SysNetCheatGUI.pdb
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.frmAbout.resources
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.FrmEditDialog.resources
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.FrmMain.resources
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.Properties.Resources.resources
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.csproj.GenerateResource.cache
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.csproj.CoreCompileInputs.cache
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.exe
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.pdb
