@@ -257,7 +257,6 @@ namespace SysNetCheatGUI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             EnableForm(false);
-            ;
         }
 
         private void editValueToolStripMenuItem_Click(object sender, EventArgs e)

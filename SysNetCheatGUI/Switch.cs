@@ -188,12 +188,19 @@ namespace SysNetCheatGUI
         /// </summary>
         public void Disconnect()
         {
-            _listen.Abort();
-            _stream.Close();
-            SwitchSocket.Shutdown(SocketShutdown.Both);
-            SwitchSocket.Close();
-            _br.Close();
-            _bw.Close();
+            _listen?.Abort();
+            _stream?.Close();
+            _br?.Close();
+            _bw?.Close();
+            try
+            {
+                SwitchSocket?.Shutdown(SocketShutdown.Both);
+                SwitchSocket?.Close();
+            }
+            catch
+            {
+            }
+            
 
             _mainForm.EnableForm(false);
             _mainForm.MySwitch = null;
