@@ -146,46 +146,75 @@ namespace SysNetCheatGUI
         {
             int index = lvAddress.SelectedIndex();
 
-                using (FrmEditValue editValue = new FrmEditValue())
+            using (FrmEditValue editValue = new FrmEditValue())
+            {
+                if (editValue.ShowDialog() == DialogResult.OK)
                 {
-                    if (editValue.ShowDialog() == DialogResult.OK)
+                    //Check if address exist
+                    //Get Stored Address Count
+                    //If more than 0 
+                    int count = lvStoredAddresses.Items.Count;
+                    if (count > 0)
                     {
-                        //Check if address exist
-                        //Get Stored Address Count
-                        //If more than 0 
-                        if (lvStoredAddresses.Items.Count > 0)
+                        bool found = false;
+                        //Loop thru the addresses
+                        for (int i = 0; i < count; i++)
                         {
-                            //Loop thru the addresses
-                            for (int i = 0; i < lvStoredAddresses.Items.Count; i++)
-                            {
-                                string address = lvStoredAddresses.Items[i].ToString();
-                                address = address.Split(' ')[0];
-                                //If address found
-                                if (lvAddress.Items[index].SubItems[0].Text == address)
-                                {
-                                    //Edit Existing Address
-                                    lvStoredAddresses.Items[i].SubItems[4].Text = editValue.Value;
 
-                                }
-                                else
-                                {
-                                    //Else Add a new Address
-                                    lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text,"",GetSearchSize(),editValue.Value));
-                                }
+                            string address = lvStoredAddresses.Items[i].SubItems[2].Text;
+                            address = address.Split(' ')[0];
+                            //If address found
+                            if (lvAddress.Items[index].SubItems[0].Text == address)
+                            {
+                                found = true;
+                                //Edit Existing Address
+                                lvStoredAddresses.Items[i].SubItems[5].Text = editValue.Value;
+                                break;
                             }
+
                         }
-                        else
+                        if (!found)
                         {
-                        //Else Add a new Address
-                        lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text, "", GetSearchSize(), editValue.Value));
+                            //Else Add a new Address
+                            lvStoredAddresses.Items.Add(AddListViewItem(
+                                lvAddress.Items[index].SubItems[0].Text, "", GetSearchSize(),
+                                editValue.Value));
+                        }
                     }
-                        string command = MySwitch.Command(Commands.PokeAddress, lvAddress.Items[index].SubItems[0].Text,
-                            GetSearchSize(), editValue.Value, "");
-                        byte[] byteCommand = Encoding.Default.GetBytes(command);
-                        MySwitch.SendPacket(byteCommand);
-                        MySwitch.ClearWriteBuffer();
+                    else
+                    {
+                        //Else Add a new Address
+                        lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text, "",
+                            GetSearchSize(), editValue.Value));
                     }
                 }
+
+                string command = MySwitch.Command(Commands.PokeAddress, lvAddress.Items[index].SubItems[0].Text,
+                    GetSearchSize(), editValue.Value, "");
+                byte[] byteCommand = Encoding.Default.GetBytes(command);
+                MySwitch.SendPacket(byteCommand);
+                MySwitch.ClearWriteBuffer();
+            }
+        }
+
+
+        private void EditAddress()
+        {
+            int index = lvStoredAddresses.SelectedIndex();
+            using (FrmEditValue editValue = new FrmEditValue())
+            {
+                if (editValue.ShowDialog() == DialogResult.OK)
+                {
+                    //Edit Existing Address
+                    lvStoredAddresses.Items[index].SubItems[5].Text = editValue.Value;
+     
+                    string command = MySwitch.Command(Commands.PokeAddress, lvStoredAddresses.Items[index].SubItems[2].Text,
+                        GetSearchSize(), editValue.Value, "");
+                    byte[] byteCommand = Encoding.Default.GetBytes(command);
+                    MySwitch.SendPacket(byteCommand);
+                    MySwitch.ClearWriteBuffer();
+                }
+            }
         }
 
         private ListViewItem AddListViewItem(string address, string name, string valueType, string value)
@@ -193,17 +222,19 @@ namespace SysNetCheatGUI
             //Create new Instance of Object
             //Declearing it empty so subset 0 is a checkbox.
             ListViewItem item = new ListViewItem();
-
             //Add to Item subset 1 Address
+            item.SubItems.Add("");
+
+            //Add to Item subset 2 Address
             item.SubItems.Add(address);
 
-            //Add to Item subset 2 Name
+            //Add to Item subset 3 Name
             item.SubItems.Add(name);
 
-            //Add to Item subset 3 ValueType
+            //Add to Item subset 4 ValueType
             item.SubItems.Add(valueType);
 
-            //Add to Item subset 4 Value
+            //Add to Item subset 5 Value
             item.SubItems.Add(value);
 
             return item;
@@ -219,6 +250,11 @@ namespace SysNetCheatGUI
         {
             EnableForm(false);
             ;
+        }
+
+        private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditAddress();
         }
     }
 }

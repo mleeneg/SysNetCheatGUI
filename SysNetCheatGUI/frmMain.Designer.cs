@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.txtIPAddress = new System.Windows.Forms.TextBox();
             this.lblSwitchIPAddress = new System.Windows.Forms.Label();
@@ -42,12 +43,12 @@
             this.radU8 = new System.Windows.Forms.RadioButton();
             this.btnConnectSwitch = new System.Windows.Forms.Button();
             this.txtConsole = new System.Windows.Forms.TextBox();
-            this.lblConsole = new System.Windows.Forms.Label();
             this.lvAddress = new System.Windows.Forms.ListView();
             this.colAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvStoredAddresses = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,8 +62,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFound = new System.Windows.Forms.Label();
             this.lblCountFound = new System.Windows.Forms.Label();
+            this.btnAddAddress = new System.Windows.Forms.Button();
+            this.btnRemoveAddress = new System.Windows.Forms.Button();
+            this.cmsStoredAddress = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbValueSize.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.cmsStoredAddress.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtIPAddress
@@ -84,9 +91,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(420, 72);
+            this.btnSearch.Location = new System.Drawing.Point(384, 73);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(143, 23);
+            this.btnSearch.Size = new System.Drawing.Size(76, 23);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -94,17 +101,17 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(324, 107);
+            this.txtValue.Location = new System.Drawing.Point(322, 104);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(239, 22);
+            this.txtValue.Size = new System.Drawing.Size(138, 22);
             this.txtValue.TabIndex = 0;
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
             // btnNewSearch
             // 
-            this.btnNewSearch.Location = new System.Drawing.Point(277, 72);
+            this.btnNewSearch.Location = new System.Drawing.Point(275, 73);
             this.btnNewSearch.Name = "btnNewSearch";
-            this.btnNewSearch.Size = new System.Drawing.Size(137, 23);
+            this.btnNewSearch.Size = new System.Drawing.Size(103, 23);
             this.btnNewSearch.TabIndex = 2;
             this.btnNewSearch.Text = "New Search";
             this.btnNewSearch.UseVisualStyleBackColor = true;
@@ -113,7 +120,7 @@
             // lblValue
             // 
             this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(274, 110);
+            this.lblValue.Location = new System.Drawing.Point(272, 107);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(44, 17);
             this.lblValue.TabIndex = 3;
@@ -125,9 +132,9 @@
             this.gbValueSize.Controls.Add(this.radU32);
             this.gbValueSize.Controls.Add(this.radU16);
             this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(277, 135);
+            this.gbValueSize.Location = new System.Drawing.Point(466, 39);
             this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Size = new System.Drawing.Size(283, 51);
+            this.gbValueSize.Size = new System.Drawing.Size(164, 87);
             this.gbValueSize.TabIndex = 4;
             this.gbValueSize.TabStop = false;
             this.gbValueSize.Text = "Value Size";
@@ -135,7 +142,7 @@
             // radU64
             // 
             this.radU64.AutoSize = true;
-            this.radU64.Location = new System.Drawing.Point(224, 21);
+            this.radU64.Location = new System.Drawing.Point(84, 48);
             this.radU64.Name = "radU64";
             this.radU64.Size = new System.Drawing.Size(53, 21);
             this.radU64.TabIndex = 3;
@@ -146,7 +153,7 @@
             // radU32
             // 
             this.radU32.AutoSize = true;
-            this.radU32.Location = new System.Drawing.Point(153, 21);
+            this.radU32.Location = new System.Drawing.Point(15, 48);
             this.radU32.Name = "radU32";
             this.radU32.Size = new System.Drawing.Size(53, 21);
             this.radU32.TabIndex = 2;
@@ -178,9 +185,9 @@
             // 
             // btnConnectSwitch
             // 
-            this.btnConnectSwitch.Location = new System.Drawing.Point(277, 36);
+            this.btnConnectSwitch.Location = new System.Drawing.Point(275, 36);
             this.btnConnectSwitch.Name = "btnConnectSwitch";
-            this.btnConnectSwitch.Size = new System.Drawing.Size(286, 23);
+            this.btnConnectSwitch.Size = new System.Drawing.Size(185, 23);
             this.btnConnectSwitch.TabIndex = 5;
             this.btnConnectSwitch.Text = "Connect";
             this.btnConnectSwitch.UseVisualStyleBackColor = true;
@@ -189,29 +196,22 @@
             // txtConsole
             // 
             this.txtConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsole.Location = new System.Drawing.Point(274, 209);
+            this.txtConsole.Location = new System.Drawing.Point(272, 132);
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtConsole.Size = new System.Drawing.Size(289, 139);
+            this.txtConsole.Size = new System.Drawing.Size(358, 172);
             this.txtConsole.TabIndex = 9;
-            // 
-            // lblConsole
-            // 
-            this.lblConsole.AutoSize = true;
-            this.lblConsole.Location = new System.Drawing.Point(274, 189);
-            this.lblConsole.Name = "lblConsole";
-            this.lblConsole.Size = new System.Drawing.Size(59, 17);
-            this.lblConsole.TabIndex = 12;
-            this.lblConsole.Text = "Console";
             // 
             // lvAddress
             // 
             this.lvAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colAddress,
             this.colValue});
+            this.lvAddress.FullRowSelect = true;
             this.lvAddress.GridLines = true;
             this.lvAddress.Location = new System.Drawing.Point(12, 73);
+            this.lvAddress.MultiSelect = false;
             this.lvAddress.Name = "lvAddress";
             this.lvAddress.Size = new System.Drawing.Size(254, 275);
             this.lvAddress.TabIndex = 13;
@@ -236,22 +236,32 @@
             this.lvStoredAddresses.CheckBoxes = true;
             this.lvStoredAddresses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
+            this.columnHeader2,
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader1});
+            this.lvStoredAddresses.ContextMenuStrip = this.cmsStoredAddress;
+            this.lvStoredAddresses.FullRowSelect = true;
             this.lvStoredAddresses.GridLines = true;
+            this.lvStoredAddresses.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvStoredAddresses.Location = new System.Drawing.Point(12, 354);
+            this.lvStoredAddresses.MultiSelect = false;
             this.lvStoredAddresses.Name = "lvStoredAddresses";
-            this.lvStoredAddresses.Size = new System.Drawing.Size(551, 186);
+            this.lvStoredAddresses.Size = new System.Drawing.Size(621, 186);
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Freeze";
-            this.columnHeader4.Width = 55;
+            this.columnHeader4.Text = "";
+            this.columnHeader4.Width = 25;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "ID";
+            this.columnHeader2.Width = 50;
             // 
             // columnHeader5
             // 
@@ -265,8 +275,8 @@
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Value Type";
-            this.columnHeader7.Width = 71;
+            this.columnHeader7.Text = "Value Size";
+            this.columnHeader7.Width = 86;
             // 
             // columnHeader1
             // 
@@ -280,7 +290,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(572, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(642, 28);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -344,16 +354,57 @@
             this.lblCountFound.TabIndex = 17;
             this.lblCountFound.Text = "0";
             // 
+            // btnAddAddress
+            // 
+            this.btnAddAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAddress.Image")));
+            this.btnAddAddress.Location = new System.Drawing.Point(523, 310);
+            this.btnAddAddress.Name = "btnAddAddress";
+            this.btnAddAddress.Size = new System.Drawing.Size(52, 38);
+            this.btnAddAddress.TabIndex = 18;
+            this.btnAddAddress.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveAddress
+            // 
+            this.btnRemoveAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAddress.Image")));
+            this.btnRemoveAddress.Location = new System.Drawing.Point(581, 310);
+            this.btnRemoveAddress.Name = "btnRemoveAddress";
+            this.btnRemoveAddress.Size = new System.Drawing.Size(52, 38);
+            this.btnRemoveAddress.TabIndex = 19;
+            this.btnRemoveAddress.UseVisualStyleBackColor = true;
+            // 
+            // cmsStoredAddress
+            // 
+            this.cmsStoredAddress.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsStoredAddress.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editNameToolStripMenuItem,
+            this.editValueToolStripMenuItem});
+            this.cmsStoredAddress.Name = "cmsStoredAddress";
+            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
+            // 
+            // editNameToolStripMenuItem
+            // 
+            this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
+            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editNameToolStripMenuItem.Text = "Edit Name";
+            // 
+            // editValueToolStripMenuItem
+            // 
+            this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
+            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.editValueToolStripMenuItem.Text = "Edit Value";
+            this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 552);
+            this.ClientSize = new System.Drawing.Size(642, 552);
+            this.Controls.Add(this.btnRemoveAddress);
+            this.Controls.Add(this.btnAddAddress);
             this.Controls.Add(this.lblCountFound);
             this.Controls.Add(this.lblFound);
             this.Controls.Add(this.lvStoredAddresses);
             this.Controls.Add(this.lvAddress);
-            this.Controls.Add(this.lblConsole);
             this.Controls.Add(this.txtConsole);
             this.Controls.Add(this.btnConnectSwitch);
             this.Controls.Add(this.gbValueSize);
@@ -374,6 +425,7 @@
             this.gbValueSize.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.cmsStoredAddress.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,7 +444,6 @@
         private System.Windows.Forms.RadioButton radU16;
         private System.Windows.Forms.RadioButton radU8;
         private System.Windows.Forms.Button btnConnectSwitch;
-        private System.Windows.Forms.Label lblConsole;
         private System.Windows.Forms.ColumnHeader colAddress;
         private System.Windows.Forms.ColumnHeader colValue;
         private System.Windows.Forms.ListView lvStoredAddresses;
@@ -413,6 +464,12 @@
         public System.Windows.Forms.TextBox txtConsole;
         public System.Windows.Forms.ListView lvAddress;
         public System.Windows.Forms.Label lblCountFound;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button btnAddAddress;
+        private System.Windows.Forms.Button btnRemoveAddress;
+        private System.Windows.Forms.ContextMenuStrip cmsStoredAddress;
+        private System.Windows.Forms.ToolStripMenuItem editNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editValueToolStripMenuItem;
     }
 }
 

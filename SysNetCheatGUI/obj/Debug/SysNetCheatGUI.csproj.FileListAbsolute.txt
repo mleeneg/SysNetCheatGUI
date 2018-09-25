@@ -39,3 +39,4 @@ G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.csproj.Generate
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.csproj.CoreCompileInputs.cache
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.exe
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.pdb
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.frmEditName.resources
