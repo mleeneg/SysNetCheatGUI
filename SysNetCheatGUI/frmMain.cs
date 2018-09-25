@@ -45,11 +45,6 @@ namespace SysNetCheatGUI
                     }
                 }
             }
-            else
-            {
-                //MySwitch = null;
-                MessageBox.Show(this, "Cannot Connect");
-            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -79,12 +74,10 @@ namespace SysNetCheatGUI
                     MySwitch.ClearWriteBuffer();
                 }
             }
-
         }
 
         public void EnableForm(bool b)
         {
-
             btnNewSearch.Enabled = b;
             btnSearch.Enabled = b;
             txtValue.Enabled = b;
@@ -118,7 +111,7 @@ namespace SysNetCheatGUI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //MySwitch.Disconnect();
+            MySwitch?.Disconnect();
         }
 
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -255,6 +248,21 @@ namespace SysNetCheatGUI
         private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditAddress();
+        }
+
+        private void btnAddAddress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveAddress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            MySwitch?.Disconnect();
         }
     }
 }

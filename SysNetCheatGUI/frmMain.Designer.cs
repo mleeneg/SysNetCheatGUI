@@ -53,6 +53,9 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmsStoredAddress = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNotFinishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,12 +67,10 @@
             this.lblCountFound = new System.Windows.Forms.Label();
             this.btnAddAddress = new System.Windows.Forms.Button();
             this.btnRemoveAddress = new System.Windows.Forms.Button();
-            this.cmsStoredAddress = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDisconnect = new System.Windows.Forms.Button();
             this.gbValueSize.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.cmsStoredAddress.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtIPAddress
@@ -91,9 +92,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(384, 73);
+            this.btnSearch.Location = new System.Drawing.Point(390, 73);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(76, 23);
+            this.btnSearch.Size = new System.Drawing.Size(112, 23);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -103,7 +104,7 @@
             // 
             this.txtValue.Location = new System.Drawing.Point(322, 104);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(138, 22);
+            this.txtValue.Size = new System.Drawing.Size(180, 22);
             this.txtValue.TabIndex = 0;
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
@@ -111,7 +112,7 @@
             // 
             this.btnNewSearch.Location = new System.Drawing.Point(275, 73);
             this.btnNewSearch.Name = "btnNewSearch";
-            this.btnNewSearch.Size = new System.Drawing.Size(103, 23);
+            this.btnNewSearch.Size = new System.Drawing.Size(109, 23);
             this.btnNewSearch.TabIndex = 2;
             this.btnNewSearch.Text = "New Search";
             this.btnNewSearch.UseVisualStyleBackColor = true;
@@ -132,7 +133,7 @@
             this.gbValueSize.Controls.Add(this.radU32);
             this.gbValueSize.Controls.Add(this.radU16);
             this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(466, 39);
+            this.gbValueSize.Location = new System.Drawing.Point(508, 39);
             this.gbValueSize.Name = "gbValueSize";
             this.gbValueSize.Size = new System.Drawing.Size(164, 87);
             this.gbValueSize.TabIndex = 4;
@@ -187,7 +188,7 @@
             // 
             this.btnConnectSwitch.Location = new System.Drawing.Point(275, 36);
             this.btnConnectSwitch.Name = "btnConnectSwitch";
-            this.btnConnectSwitch.Size = new System.Drawing.Size(185, 23);
+            this.btnConnectSwitch.Size = new System.Drawing.Size(109, 23);
             this.btnConnectSwitch.TabIndex = 5;
             this.btnConnectSwitch.Text = "Connect";
             this.btnConnectSwitch.UseVisualStyleBackColor = true;
@@ -200,7 +201,7 @@
             this.txtConsole.Multiline = true;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtConsole.Size = new System.Drawing.Size(358, 172);
+            this.txtConsole.Size = new System.Drawing.Size(400, 172);
             this.txtConsole.TabIndex = 9;
             // 
             // lvAddress
@@ -248,7 +249,7 @@
             this.lvStoredAddresses.Location = new System.Drawing.Point(12, 354);
             this.lvStoredAddresses.MultiSelect = false;
             this.lvStoredAddresses.Name = "lvStoredAddresses";
-            this.lvStoredAddresses.Size = new System.Drawing.Size(621, 186);
+            this.lvStoredAddresses.Size = new System.Drawing.Size(658, 186);
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
@@ -282,6 +283,28 @@
             // 
             this.columnHeader1.Text = "Value";
             // 
+            // cmsStoredAddress
+            // 
+            this.cmsStoredAddress.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsStoredAddress.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editNameToolStripMenuItem,
+            this.editValueToolStripMenuItem});
+            this.cmsStoredAddress.Name = "cmsStoredAddress";
+            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
+            // 
+            // editNameToolStripMenuItem
+            // 
+            this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
+            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.editNameToolStripMenuItem.Text = "Edit Name";
+            // 
+            // editValueToolStripMenuItem
+            // 
+            this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
+            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.editValueToolStripMenuItem.Text = "Edit Value";
+            this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -290,7 +313,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(642, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(679, 28);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -357,48 +380,39 @@
             // btnAddAddress
             // 
             this.btnAddAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAddress.Image")));
-            this.btnAddAddress.Location = new System.Drawing.Point(523, 310);
+            this.btnAddAddress.Location = new System.Drawing.Point(562, 310);
             this.btnAddAddress.Name = "btnAddAddress";
             this.btnAddAddress.Size = new System.Drawing.Size(52, 38);
             this.btnAddAddress.TabIndex = 18;
             this.btnAddAddress.UseVisualStyleBackColor = true;
+            this.btnAddAddress.Click += new System.EventHandler(this.btnAddAddress_Click);
             // 
             // btnRemoveAddress
             // 
             this.btnRemoveAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAddress.Image")));
-            this.btnRemoveAddress.Location = new System.Drawing.Point(581, 310);
+            this.btnRemoveAddress.Location = new System.Drawing.Point(620, 310);
             this.btnRemoveAddress.Name = "btnRemoveAddress";
             this.btnRemoveAddress.Size = new System.Drawing.Size(52, 38);
             this.btnRemoveAddress.TabIndex = 19;
             this.btnRemoveAddress.UseVisualStyleBackColor = true;
+            this.btnRemoveAddress.Click += new System.EventHandler(this.btnRemoveAddress_Click);
             // 
-            // cmsStoredAddress
+            // btnDisconnect
             // 
-            this.cmsStoredAddress.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsStoredAddress.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editNameToolStripMenuItem,
-            this.editValueToolStripMenuItem});
-            this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
-            // 
-            // editNameToolStripMenuItem
-            // 
-            this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
-            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.editNameToolStripMenuItem.Text = "Edit Name";
-            // 
-            // editValueToolStripMenuItem
-            // 
-            this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
-            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
-            this.editValueToolStripMenuItem.Text = "Edit Value";
-            this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
+            this.btnDisconnect.Location = new System.Drawing.Point(390, 36);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(112, 23);
+            this.btnDisconnect.TabIndex = 20;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.UseVisualStyleBackColor = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 552);
+            this.ClientSize = new System.Drawing.Size(679, 552);
+            this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnRemoveAddress);
             this.Controls.Add(this.btnAddAddress);
             this.Controls.Add(this.lblCountFound);
@@ -423,9 +437,9 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.gbValueSize.ResumeLayout(false);
             this.gbValueSize.PerformLayout();
+            this.cmsStoredAddress.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.cmsStoredAddress.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +484,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsStoredAddress;
         private System.Windows.Forms.ToolStripMenuItem editNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editValueToolStripMenuItem;
+        private System.Windows.Forms.Button btnDisconnect;
     }
 }
 

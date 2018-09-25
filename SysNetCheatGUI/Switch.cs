@@ -138,14 +138,7 @@ namespace SysNetCheatGUI
             {
                 
                 Connected = false;
-                if (_mainForm.InvokeRequired)
-                {
-                    _mainForm.Invoke(new Action(() =>
-                    {
-                        _mainForm.EnableForm(false);
-                        _mainForm.MySwitch = null;
-                    }));
-                }
+                Disconnect();
                 MessageBox.Show(e.ToString());
 
             }
@@ -201,7 +194,10 @@ namespace SysNetCheatGUI
             SwitchSocket.Close();
             _br.Close();
             _bw.Close();
-            Connected = false;
+
+            _mainForm.EnableForm(false);
+            _mainForm.MySwitch = null;
+
         }
 
         public void SendPacket(byte[] command)
