@@ -290,13 +290,14 @@
             this.editNameToolStripMenuItem,
             this.editValueToolStripMenuItem});
             this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
+            this.cmsStoredAddress.Size = new System.Drawing.Size(211, 80);
             // 
             // editNameToolStripMenuItem
             // 
             this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
-            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editNameToolStripMenuItem.Text = "Edit Name";
+            this.editNameToolStripMenuItem.Click += new System.EventHandler(this.editNameToolStripMenuItem_Click);
             // 
             // editValueToolStripMenuItem
             // 

@@ -49,17 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicExtensions.cs" />
-    <Compile Include="frmEditName.cs">
+    <Compile Include="frmEditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditName.Designer.cs">
-      <DependentUpon>frmEditName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmEditValue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmEditValue.Designer.cs">
-      <DependentUpon>frmEditValue.cs</DependentUpon>
+    <Compile Include="frmEditDialog.Designer.cs">
+      <DependentUpon>frmEditDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -70,11 +64,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switch.cs" />
-    <EmbeddedResource Include="frmEditName.resx">
-      <DependentUpon>frmEditName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmEditValue.resx">
-      <DependentUpon>frmEditValue.cs</DependentUpon>
+    <EmbeddedResource Include="frmEditDialog.resx">
+      <DependentUpon>frmEditDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

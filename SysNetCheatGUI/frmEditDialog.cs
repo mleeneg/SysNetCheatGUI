@@ -10,17 +10,19 @@ using System.Windows.Forms;
 
 namespace SysNetCheatGUI
 {
-    public partial class frmEditName : Form
+    public partial class FrmEditDialog : Form
     {
-        public string Value;
-        public frmEditName()
+        public string Value = "";
+
+        public FrmEditDialog(string labeltext)
         {
             InitializeComponent();
+            lblText.Text = labeltext;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Value = txtName.Text;
+            Value = txtValue.Text;
             DialogResult = DialogResult.OK;
         }
 
@@ -29,12 +31,12 @@ namespace SysNetCheatGUI
             DialogResult = DialogResult.Cancel;
         }
 
-        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            if (e.KeyChar == (char)13)
+            {
+                btnOK_Click(sender, e);
+            }
         }
-
     }
 }
-
-

@@ -20,7 +20,8 @@ namespace SysNetCheatGUI
         public Switch MySwitch;
 
         public bool OkayToStartSearch = false;
-
+        private string _editValue = "Edit Value";
+        private string _editName = "Edit Name";
 
         public FrmMain()
         {
@@ -139,7 +140,7 @@ namespace SysNetCheatGUI
         {
             int index = lvAddress.SelectedIndex();
 
-            using (FrmEditValue editValue = new FrmEditValue())
+            using (FrmEditDialog editValue = new FrmEditDialog(_editValue))
             {
                 if (editValue.ShowDialog() == DialogResult.OK)
                 {
@@ -191,10 +192,10 @@ namespace SysNetCheatGUI
         }
 
 
-        private void EditAddress()
+        private void EditAddressValue()
         {
             int index = lvStoredAddresses.SelectedIndex();
-            using (FrmEditValue editValue = new FrmEditValue())
+            using (FrmEditDialog editValue = new FrmEditDialog(_editValue))
             {
                 if (editValue.ShowDialog() == DialogResult.OK)
                 {
@@ -206,6 +207,19 @@ namespace SysNetCheatGUI
                     byte[] byteCommand = Encoding.Default.GetBytes(command);
                     MySwitch.SendPacket(byteCommand);
                     MySwitch.ClearWriteBuffer();
+                }
+            }
+        }
+
+        private void EditNameValue()
+        {
+            int index = lvStoredAddresses.SelectedIndex();
+            using (FrmEditDialog editValue = new FrmEditDialog(_editName))
+            {
+                if (editValue.ShowDialog() == DialogResult.OK)
+                {
+                    //Edit Name
+                    lvStoredAddresses.Items[index].SubItems[3].Text = editValue.Value;
                 }
             }
         }
@@ -236,6 +250,7 @@ namespace SysNetCheatGUI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MySwitch?.Disconnect();
             this.Close();
         }
 
@@ -247,7 +262,7 @@ namespace SysNetCheatGUI
 
         private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EditAddress();
+            EditAddressValue();
         }
 
         private void btnAddAddress_Click(object sender, EventArgs e)
@@ -263,6 +278,11 @@ namespace SysNetCheatGUI
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
             MySwitch?.Disconnect();
+        }
+
+        private void editNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNameValue();
         }
     }
 }
