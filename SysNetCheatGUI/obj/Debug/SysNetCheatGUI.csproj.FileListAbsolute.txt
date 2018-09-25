@@ -40,3 +40,4 @@ G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.exe
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.pdb
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmEditDialog.resources
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.frmAbout.resources
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmAddAddress.resources

@@ -1,6 +1,6 @@
 ﻿namespace SysNetCheatGUI
 {
-    partial class frmAbout
+    partial class FrmAbout
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
             this.label2 = new System.Windows.Forms.Label();
             this.linkJakibaki = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();

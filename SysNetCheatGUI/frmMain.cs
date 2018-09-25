@@ -77,33 +77,6 @@ namespace SysNetCheatGUI
             }
         }
 
-        public void EnableForm(bool b)
-        {
-            btnNewSearch.Enabled = b;
-            btnSearch.Enabled = b;
-            txtValue.Enabled = b;
-            gbValueSize.Enabled = b;
-            lvAddress.Enabled = b;
-        }
-
-        /// <summary>
-        /// Gets the Search size.
-        /// String: u8, u16, u32, or u64
-        /// </summary>
-        /// <returns></returns>
-        private string GetSearchSize()
-        {
-            if (radU8.Checked)
-                return "u8";
-            if (radU16.Checked)
-                return "u16";
-            if (radU32.Checked)
-                return "u32";
-            if (radU64.Checked)
-                return "u64";
-            return "X_X";
-        }
-
         private void btnNewSearch_Click(object sender, EventArgs e)
         {
             MySwitch.IsNewSearch = true;
@@ -134,6 +107,97 @@ namespace SysNetCheatGUI
         private void lvAddress_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             AddAddress();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MySwitch?.Disconnect();
+            this.Close();
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            EnableForm(false);
+        }
+
+        private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditAddressValue();
+        }
+
+        private void btnAddAddress_Click(object sender, EventArgs e)
+        {
+            using (FrmAddAddress addAddress = new FrmAddAddress())
+            {
+                if (addAddress.ShowDialog() == DialogResult.OK)
+                {
+                    ManuallyAddAddress(addAddress);
+                }
+            }
+
+        }
+
+        private void btnRemoveAddress_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int index = lvStoredAddresses.SelectedIndex();
+                lvStoredAddresses.Items.RemoveAt(index);
+            }
+            catch
+            {
+                MessageBox.Show(this.Owner, "Could not delete address.");
+            }
+            
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            MySwitch?.Disconnect();
+        }
+
+        private void editNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditNameValue();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FrmAbout about = new FrmAbout())
+            {
+                about.ShowDialog();
+            }
+
+        }
+
+        public void EnableForm(bool offOn)
+        {
+            btnNewSearch.Enabled = offOn;
+            btnSearch.Enabled = offOn;
+            txtValue.Enabled = offOn;
+            gbValueSize.Enabled = offOn;
+            lvAddress.Enabled = offOn;
+            lvStoredAddresses.Enabled = offOn;
+            btnAddAddress.Enabled = offOn;
+            btnRemoveAddress.Enabled = offOn;
+        }
+
+        /// <summary>
+        /// Gets the Search size.
+        /// String: u8, u16, u32, or u64
+        /// </summary>
+        /// <returns></returns>
+        private string GetSearchSize()
+        {
+            if (radU8.Checked)
+                return "u8";
+            if (radU16.Checked)
+                return "u16";
+            if (radU32.Checked)
+                return "u32";
+            if (radU64.Checked)
+                return "u64";
+            return "X_X";
         }
 
         private void AddAddress()
@@ -183,14 +247,56 @@ namespace SysNetCheatGUI
                     }
                 }
 
-                string command = MySwitch.Command(Commands.PokeAddress, lvAddress.Items[index].SubItems[0].Text,
-                    GetSearchSize(), editValue.Value, "");
-                byte[] byteCommand = Encoding.Default.GetBytes(command);
-                MySwitch.SendPacket(byteCommand);
-                MySwitch.ClearWriteBuffer();
+                MySwitch.SendCommand(Commands.PokeAddress, "", lvAddress.Items[index].SubItems[0].Text,
+                    GetSearchSize(), editValue.Value);
             }
         }
 
+        private void ManuallyAddAddress(FrmAddAddress frmAddAddress)
+        {
+
+            //Check if address exist
+            //Get Stored Address Count
+            //If more than 0 
+            int count = lvStoredAddresses.Items.Count;
+            if (count > 0)
+            {
+                bool found = false;
+                //Loop thru the addresses
+                for (int i = 0; i < count; i++)
+                {
+
+                    string address = lvStoredAddresses.Items[i].SubItems[2].Text;
+                    address = address.Split(' ')[0];
+                    //If address found
+                    if (frmAddAddress.Address == address)
+                    {
+                        found = true;
+                        //Edit Existing Address
+                        lvStoredAddresses.Items[i].SubItems[3].Text = frmAddAddress.Name;
+                        lvStoredAddresses.Items[i].SubItems[4].Text = frmAddAddress.ValueSize;
+                        lvStoredAddresses.Items[i].SubItems[5].Text = frmAddAddress.Value;
+                        break;
+                    }
+
+                }
+                if (!found)
+                {
+                    //Else Add a new Address
+                    lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name, frmAddAddress.ValueSize,
+                        frmAddAddress.Value));
+                }
+            }
+            else
+            {
+                //Else Add a new Address
+                lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name, frmAddAddress.ValueSize,
+                    frmAddAddress.Value));
+            }
+
+            MySwitch.SendCommand(Commands.PokeAddress, "", frmAddAddress.Address,
+                frmAddAddress.ValueSize, frmAddAddress.Value);
+        }
 
         private void EditAddressValue()
         {
@@ -201,12 +307,9 @@ namespace SysNetCheatGUI
                 {
                     //Edit Existing Address
                     lvStoredAddresses.Items[index].SubItems[5].Text = editValue.Value;
-     
-                    string command = MySwitch.Command(Commands.PokeAddress, lvStoredAddresses.Items[index].SubItems[2].Text,
-                        GetSearchSize(), editValue.Value, "");
-                    byte[] byteCommand = Encoding.Default.GetBytes(command);
-                    MySwitch.SendPacket(byteCommand);
-                    MySwitch.ClearWriteBuffer();
+                    
+                    MySwitch.SendCommand(Commands.PokeAddress, "", lvStoredAddresses.Items[index].SubItems[2].Text,
+                        GetSearchSize(), editValue.Value);
                 }
             }
         }
@@ -246,51 +349,6 @@ namespace SysNetCheatGUI
 
             return item;
 
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MySwitch?.Disconnect();
-            this.Close();
-        }
-
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-            EnableForm(false);
-        }
-
-        private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditAddressValue();
-        }
-
-        private void btnAddAddress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRemoveAddress_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDisconnect_Click(object sender, EventArgs e)
-        {
-            MySwitch?.Disconnect();
-        }
-
-        private void editNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditNameValue();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (frmAbout about = new frmAbout())
-            {
-                about.ShowDialog();
-            }
-            
         }
     }
 }

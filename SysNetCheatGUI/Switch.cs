@@ -145,7 +145,7 @@ namespace SysNetCheatGUI
         }
        
 
-        public string Command(Commands commands,string address,string datatype,string value,string index)
+        public string Command(Commands commands, string index,string address,string datatype,string value)
         {
             switch (commands)
             {
@@ -218,9 +218,18 @@ namespace SysNetCheatGUI
             command = listbytecommand.ToArray();
             _bw.Write(command);
         }
+
         public void ClearWriteBuffer()
         {
             _bw.Flush();
+        }
+
+        public void SendCommand(Commands commands, string id, string address, string valueType,string value)
+        {
+            string command = Command(commands,id,address,valueType,value);
+            byte[] byteCommand = Encoding.Default.GetBytes(command);
+            SendPacket(byteCommand);
+            ClearWriteBuffer();
         }
 
         public static int IndexOf(byte[] array, byte[] pattern, int offset)

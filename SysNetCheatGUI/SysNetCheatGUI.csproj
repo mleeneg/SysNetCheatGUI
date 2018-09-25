@@ -49,35 +49,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicExtensions.cs" />
-    <Compile Include="frmAbout.cs">
+    <Compile Include="FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAbout.Designer.cs">
-      <DependentUpon>frmAbout.cs</DependentUpon>
+    <Compile Include="FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEditDialog.cs">
+    <Compile Include="FrmAddAddress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditDialog.Designer.cs">
-      <DependentUpon>frmEditDialog.cs</DependentUpon>
+    <Compile Include="FrmAddAddress.Designer.cs">
+      <DependentUpon>FrmAddAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="FrmEditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="FrmEditDialog.Designer.cs">
+      <DependentUpon>FrmEditDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switch.cs" />
-    <EmbeddedResource Include="frmAbout.resx">
-      <DependentUpon>frmAbout.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEditDialog.resx">
-      <DependentUpon>frmEditDialog.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAddAddress.resx">
+      <DependentUpon>FrmAddAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="FrmEditDialog.resx">
+      <DependentUpon>FrmEditDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
