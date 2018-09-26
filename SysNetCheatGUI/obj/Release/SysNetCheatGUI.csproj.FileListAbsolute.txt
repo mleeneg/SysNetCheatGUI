@@ -10,3 +10,4 @@ G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.csproj.CoreCo
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.exe
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.pdb
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.csprojAssemblyReference.cache
+G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Release\SysNetCheatGUI.FrmAddAddress.resources

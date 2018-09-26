@@ -176,11 +176,11 @@ namespace SysNetCheatGUI
                 //Set isNewSearch to false
                 IsNewSearch = false;
                 //Command to start New Search
-                return Command(Commands.StartSearch, "", searchSize, value, "");
+                return Command(Commands.StartSearch, "","", searchSize, value);
                 
             }
             //Command to Continue Search
-            return Command(Commands.ContinueSearch, "", "", value, "");
+            return Command(Commands.ContinueSearch, "", "","", value);
         }
 
         /// <summary>
