@@ -26,9 +26,7 @@ namespace SysNetCheatGUI
         public FrmMain()
         {
             InitializeComponent();
-            //MySwitch = new Switch(txtConsole, lvAddress,txtValue.Text);
             radU32.Checked = true;
-            txtIPAddress.Text = "192.168.1.140";
         }
 
         private void btnConnectSwitch_Click(object sender, EventArgs e)
