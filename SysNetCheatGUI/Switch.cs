@@ -33,7 +33,7 @@ namespace SysNetCheatGUI
         //Ip Address
         public IPAddress IpAddress;
         //Create TCPClient
-        public Socket SwitchSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        public Socket SwitchSocket;
         //Get Client Stream for Reading and Writing
         private NetworkStream _stream;
         private BinaryReader _br;
@@ -61,6 +61,7 @@ namespace SysNetCheatGUI
                 {
                     IpAddress = IPAddress.Parse(ip);
                     //Connect Client
+                    SwitchSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     SwitchSocket.Connect(IpAddress, SwitchPort);
                     //Set Connected
                     Connected = SwitchSocket.Connected;
@@ -76,7 +77,8 @@ namespace SysNetCheatGUI
                 catch
                 {
                     MessageBox.Show("Could Not Connect");
-                    Connected = false;
+                    _mainForm.MySwitch = null;
+                    //Connected = false;
                 }
 
             }

@@ -37,10 +37,17 @@ namespace SysNetCheatGUI
                 if (!MySwitch.Connected)
                 {
                     string ip = txtIPAddress.Text;
-                    MySwitch.Connect(ip);
-                    if (MySwitch.SwitchSocket.Connected)
+                    try
                     {
-                        EnableForm(true);
+                        MySwitch.Connect(ip);
+                        if (MySwitch.SwitchSocket.Connected)
+                        {
+                            EnableForm(true);
+                        }
+                    }
+                    catch
+                    {
+                        // ignored
                     }
                 }
             }
