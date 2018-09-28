@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace SysNetCheatGUI
 {
@@ -31,17 +20,25 @@ namespace SysNetCheatGUI
 
         private void btnConnectSwitch_Click(object sender, EventArgs e)
         {
+            //if MySwitch does not exist
             if (MySwitch == null)
             {
+                //Instanciate a New MySwitch
                 MySwitch = new Switch(this);
+                //if Not Connected
                 if (!MySwitch.Connected)
                 {
+                    //ip = text of txtIPAddress
                     string ip = txtIPAddress.Text;
+                    
                     try
                     {
+                        //Try to connect to Ip Address
                         MySwitch.Connect(ip);
+                        //if Connected
                         if (MySwitch.SwitchSocket.Connected)
                         {
+                            //Enable all form objects
                             EnableForm(true);
                         }
                     }
@@ -55,29 +52,33 @@ namespace SysNetCheatGUI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            //Set ClickSearch to true
             MySwitch.ClickedSearch = true;
+            //if GetSearchSize doesn't return Invalid response
             if (GetSearchSize() != "X_X")
             {
+                //set OkayToStartSearch to true
                 OkayToStartSearch = true;
             }
             else
             {
+                //No Search size was selected.
                 MessageBox.Show("Select a Search Value Size.");
             }
-
+            //If txtValue.Text is not Null/Empty/Blank
             if (txtValue.Text != null || txtValue.Text.Trim().Equals(""))
             {
+                //if both are true
                 if (MySwitch.SwitchSocket.Connected && OkayToStartSearch)
                 {
+                    //Disable Groupbox
                     gbValueSize.Enabled = false;
+                    //Clear listView
                     lvAddress.Items.Clear();
+                    //Clear Console textbox
                     txtConsole.Clear();
-                    //Send Command
-                    string searchString = MySwitch.SearchString(GetSearchSize(), txtValue.Text);
-                    MySwitch.SendPacket(Encoding.Default.GetBytes(searchString));
-                    //clear the write buffer
-                    MySwitch.ClearWriteBuffer();
+                    //Send CommandString
+                    MySwitch.SendCommand(MySwitch.SearchString(), "","",GetSearchSize(),txtValue.Text);
                 }
             }
         }

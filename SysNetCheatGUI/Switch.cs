@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace SysNetCheatGUI
 {
@@ -18,7 +19,8 @@ namespace SysNetCheatGUI
         PokeAddress = 2,
         FreezeAddress = 3,
         ListAddress = 4,
-        UnFreezeAddress = 5
+        ReleaseFreeze = 5,
+        UnFreezeAddress = 6
     }
 
     public class Switch
@@ -26,7 +28,7 @@ namespace SysNetCheatGUI
         //Enable the Creation of the TCPClient
         public bool Connected;
         public bool IsNewSearch = true;
-
+        public bool ReadDisplay = true;
         public bool ClickedSearch = false;
         //Default port for the Swith
         public int SwitchPort = 5555;
@@ -67,8 +69,8 @@ namespace SysNetCheatGUI
                     Connected = SwitchSocket.Connected;
                     //create stream
                     _stream = new NetworkStream(SwitchSocket);
-                    _br = new BinaryReader(_stream);
                     _bw = new BinaryWriter(_stream);
+                    _br = new BinaryReader(_stream);
                     //create thread and start it.
                     _listen = new Thread(RecieveMessages) {IsBackground = true};
                     _listen.Start();
@@ -80,7 +82,6 @@ namespace SysNetCheatGUI
                     _mainForm.MySwitch = null;
                     //Connected = false;
                 }
-
             }
             //MessageBox.Show(SocketClient.Connected == true ? "Switch is Connected!" : "Switch is Not Connected!");
         }
@@ -89,21 +90,29 @@ namespace SysNetCheatGUI
         {
             try
             {
+                
                 while (Connected)
                 {
+                    
                     byte[] buffer = new byte[1024];
-                    _stream.Read(buffer, 0, buffer.Length);
-
-                    if (_mainForm.txtConsole.InvokeRequired)
+                    if (ReadDisplay)
                     {
-                        _mainForm.txtConsole.Invoke(new Action(() =>
+                        
+                        _stream.Read(buffer, 0, buffer.Length);
+                        if (_mainForm.txtConsole.InvokeRequired)
                         {
-                            _mainForm.txtConsole.AppendText(Encoding.Default.GetString(buffer));
+                            _mainForm.txtConsole.Invoke(new Action(() =>
+                            {
+                                _mainForm.txtConsole.AppendText(Encoding.Default.GetString(buffer));
 
-                        }));
+                            }));
+                        }
                     }
+                    
+
                     if (IndexOf(buffer, new byte[] {0x3e}, 0) > -1)
                     {
+                        ReadDisplay = false;
                         if (ClickedSearch)
                         {
                             _sConsole = _mainForm.txtConsole.Text;
@@ -132,8 +141,9 @@ namespace SysNetCheatGUI
                             }
                             ClickedSearch = false;
                         }
-
+                        
                     }
+                    
                 }
             }
             catch (Exception e)
@@ -147,7 +157,7 @@ namespace SysNetCheatGUI
         }
        
 
-        public string Command(Commands commands, string index,string address,string datatype,string value)
+        public string CommandString(Commands commands, string index,string address,string datatype,string value)
         {
             switch (commands)
             {
@@ -160,7 +170,9 @@ namespace SysNetCheatGUI
                 case Commands.FreezeAddress:
                     return $"afreeze {address} {datatype} {value}";
                 case Commands.ListAddress:
-                    return $"lfreeze"; 
+                    return $"lfreeze";
+                case Commands.ReleaseFreeze:
+                    return $"rfreeze {address}";
                 case Commands.UnFreezeAddress:
                     return $"dfreeze {index}";
                 default:
@@ -169,7 +181,7 @@ namespace SysNetCheatGUI
             
         }
 
-        public string SearchString(string searchSize, string value)
+        public Commands SearchString()
         {
             //Create Search String
             
@@ -177,12 +189,11 @@ namespace SysNetCheatGUI
             {
                 //Set isNewSearch to false
                 IsNewSearch = false;
-                //Command to start New Search
-                return Command(Commands.StartSearch, "","", searchSize, value);
-                
+                //CommandString to start New Search
+                return Commands.StartSearch; //CommandString(Commands.StartSearch, "","", searchSize, value);  
             }
-            //Command to Continue Search
-            return Command(Commands.ContinueSearch, "", "","", value);
+            //CommandString to Continue Search
+            return Commands.ContinueSearch; //CommandString(Commands.ContinueSearch, "", "","", value);
         }
 
         /// <summary>
@@ -226,14 +237,30 @@ namespace SysNetCheatGUI
             _bw.Flush();
         }
 
+        /// <summary>
+        /// Sends command to sys-netcheat
+        /// </summary>
+        /// <param name="commands">Enum CommandString</param>
+        /// <param name="id">String:ID</param>
+        /// <param name="address">String:Address</param>
+        /// <param name="valueType">String:ValueSize</param>
+        /// <param name="value">String:Value</param>
         public void SendCommand(Commands commands, string id, string address, string valueType,string value)
         {
-            string command = Command(commands,id,address,valueType,value);
+            ReadDisplay = true;
+            string command = CommandString(commands,id,address,valueType,value);
             byte[] byteCommand = Encoding.Default.GetBytes(command);
             SendPacket(byteCommand);
             ClearWriteBuffer();
         }
 
+        /// <summary>
+        /// Search for Byte in Byte array
+        /// </summary>
+        /// <param name="array">Collection of bytes to look into</param>
+        /// <param name="pattern">Byte to look for</param>
+        /// <param name="offset">Where to Start</param>
+        /// <returns></returns>
         public static int IndexOf(byte[] array, byte[] pattern, int offset)
         {
             int success = 0;
