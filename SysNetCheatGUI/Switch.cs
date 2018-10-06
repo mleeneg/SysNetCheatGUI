@@ -212,6 +212,7 @@ namespace SysNetCheatGUI
             }
             catch
             {
+                //ignore
             }
             
 
@@ -227,7 +228,7 @@ namespace SysNetCheatGUI
             {
                 listbytecommand.Add(value);
             }
-            listbytecommand.Add(0x0a);
+            listbytecommand.Add(0x0a);//add to complete command.
             command = listbytecommand.ToArray();
             _bw.Write(command);
         }

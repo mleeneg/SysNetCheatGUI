@@ -257,7 +257,10 @@
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
+            this.lvStoredAddresses.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lvStoredAddresses_ItemCheck);
             this.lvStoredAddresses.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseDoubleClick);
+            this.lvStoredAddresses.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseDown);
+            this.lvStoredAddresses.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseUp);
             // 
             // columnHeader4
             // 

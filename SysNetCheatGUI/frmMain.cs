@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Windows.Forms;
 
@@ -8,6 +10,7 @@ namespace SysNetCheatGUI
     {
         public Switch MySwitch;
 
+        private bool inhibitAutoCheck;
         public bool OkayToStartSearch = false;
         private string _editValue = "Edit Value";
         private string _editName = "Edit Name";
@@ -140,7 +143,6 @@ namespace SysNetCheatGUI
                     ManuallyAddAddress(addAddress);
                 }
             }
-
         }
 
         private void btnRemoveAddress_Click(object sender, EventArgs e)
@@ -154,7 +156,6 @@ namespace SysNetCheatGUI
             {
                 MessageBox.Show(this.Owner, "Could not delete address.");
             }
-
         }
 
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -173,7 +174,6 @@ namespace SysNetCheatGUI
             {
                 about.ShowDialog();
             }
-
         }
 
         public void EnableForm(bool offOn)
@@ -359,7 +359,7 @@ namespace SysNetCheatGUI
 
         }
 
-        private void lvStoredAddresses_MouseDoubleClick(object sender, MouseEventArgs e)
+        public void lvStoredAddresses_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
@@ -372,6 +372,22 @@ namespace SysNetCheatGUI
             {
                 MessageBox.Show("Could not send command");
             }
+        }
+
+        private void lvStoredAddresses_MouseDown(object sender, MouseEventArgs e)
+        {
+            inhibitAutoCheck = true;
+        }
+
+        private void lvStoredAddresses_MouseUp(object sender, MouseEventArgs e)
+        {
+            inhibitAutoCheck = false;
+        }
+
+        private void lvStoredAddresses_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (inhibitAutoCheck)
+                e.NewValue = e.CurrentValue;
         }
     }
 }
