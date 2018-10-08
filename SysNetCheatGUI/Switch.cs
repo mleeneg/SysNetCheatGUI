@@ -157,7 +157,7 @@ namespace SysNetCheatGUI
         }
        
 
-        public string CommandString(Commands commands, string index,string address,string datatype,string value)
+        public string MakeCommandString(Commands commands, string index,string address,string datatype,string value)
         {
             switch (commands)
             {
@@ -189,11 +189,11 @@ namespace SysNetCheatGUI
             {
                 //Set isNewSearch to false
                 IsNewSearch = false;
-                //CommandString to start New Search
-                return Commands.StartSearch; //CommandString(Commands.StartSearch, "","", searchSize, value);  
+                //MakeCommandString to start New Search
+                return Commands.StartSearch; //MakeCommandString(Commands.StartSearch, "","", searchSize, value);  
             }
-            //CommandString to Continue Search
-            return Commands.ContinueSearch; //CommandString(Commands.ContinueSearch, "", "","", value);
+            //MakeCommandString to Continue Search
+            return Commands.ContinueSearch; //MakeCommandString(Commands.ContinueSearch, "", "","", value);
         }
 
         /// <summary>
@@ -241,15 +241,15 @@ namespace SysNetCheatGUI
         /// <summary>
         /// Sends command to sys-netcheat
         /// </summary>
-        /// <param name="commands">Enum CommandString</param>
+        /// <param name="commands">Enum MakeCommandString</param>
         /// <param name="id">String:ID</param>
         /// <param name="address">String:Address</param>
-        /// <param name="valueType">String:ValueSize</param>
+        /// <param name="valueSize">String:ValueSize</param>
         /// <param name="value">String:Value</param>
-        public void SendCommand(Commands commands, string id, string address, string valueType,string value)
+        public void SendCommand(Commands commands, string id, string address, string valueSize,string value)
         {
             ReadDisplay = true;
-            string command = CommandString(commands,id,address,valueType,value);
+            string command = MakeCommandString(commands,id,address,valueSize,value);
             byte[] byteCommand = Encoding.Default.GetBytes(command);
             SendPacket(byteCommand);
             ClearWriteBuffer();

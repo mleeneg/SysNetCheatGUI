@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -10,7 +12,7 @@ namespace SysNetCheatGUI
     {
         public Switch MySwitch;
 
-        private bool inhibitAutoCheck;
+        public bool InhibitAutoCheck;
         public bool OkayToStartSearch = false;
         private string _editValue = "Edit Value";
         private string _editName = "Edit Name";
@@ -80,7 +82,7 @@ namespace SysNetCheatGUI
                     lvAddress.Items.Clear();
                     //Clear Console textbox
                     txtConsole.Clear();
-                    //Send CommandString
+                    //Send MakeCommandString
                     MySwitch.SendCommand(MySwitch.SearchString(), "","",GetSearchSize(),txtValue.Text);
                 }
             }
@@ -149,7 +151,7 @@ namespace SysNetCheatGUI
         {
             try
             {
-                int index = lvStoredAddresses.SelectedIndex();
+                int index = lvStoredAddresses.SelectedIndices[0];
                 lvStoredAddresses.Items.RemoveAt(index);
             }
             catch
@@ -376,18 +378,78 @@ namespace SysNetCheatGUI
 
         private void lvStoredAddresses_MouseDown(object sender, MouseEventArgs e)
         {
-            inhibitAutoCheck = true;
+            InhibitAutoCheck = true;
         }
 
         private void lvStoredAddresses_MouseUp(object sender, MouseEventArgs e)
         {
-            inhibitAutoCheck = false;
+            InhibitAutoCheck = false;
         }
 
         private void lvStoredAddresses_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (inhibitAutoCheck)
+            if (InhibitAutoCheck)
                 e.NewValue = e.CurrentValue;
+        }
+
+        private void lvStoredAddresses_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            int count = 0;
+            for (int i = 0; i < lvStoredAddresses.Items.Count; i++)
+            {
+                if (lvStoredAddresses.Items[i].Checked)
+                {
+                    count++;
+                }
+            }
+            AddToFreeze(count);
+            DeleteFromFreeze();
+        }
+
+        private void DeleteFromFreeze()
+        {
+            //loop thru list
+            for (int i = 0; i < lvStoredAddresses.Items.Count; i++)
+            {
+                string id = lvStoredAddresses.Items[i].SubItems[1].Text;
+                //Check if Checkboxes are checked and their IDs are not blank
+                if (!lvStoredAddresses.Items[i].Checked && !id.Equals(""))
+                {
+                    //Remove Frozen address at Index
+                    MySwitch.SendCommand(Commands.UnFreezeAddress, id, "", "", "");
+                    //Set ID to blank
+                    lvStoredAddresses.Items[i].SubItems[1].Text = "";
+                    //Modify IDs of other address.
+                    for (int p = 0; p < lvStoredAddresses.Items.Count; p++)
+                    {
+                        if (lvStoredAddresses.Items[p].Checked &&
+                            int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) > int.Parse(id))
+                        {
+                            int newId = int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) - 1;
+                            lvStoredAddresses.Items[p].SubItems[1].Text = newId.ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AddToFreeze(int count)
+        {
+            //Loop thru list
+            for (int i = 0; i < lvStoredAddresses.Items.Count; i++)
+            {
+                string id = lvStoredAddresses.Items[i].SubItems[1].Text;
+                //if checked & id is blank
+                if (lvStoredAddresses.Items[i].Checked && id.Equals(""))
+                {
+                    string address = lvStoredAddresses.Items[i].SubItems[2].Text;
+                    string valueSize = lvStoredAddresses.Items[i].SubItems[4].Text;
+                    string value = lvStoredAddresses.Items[i].SubItems[5].Text;
+
+                    lvStoredAddresses.Items[i].SubItems[1].Text = (count - 1).ToString();
+                    MySwitch.SendCommand(Commands.FreezeAddress, "", address, valueSize, value);
+                }
+            }
         }
     }
 }
