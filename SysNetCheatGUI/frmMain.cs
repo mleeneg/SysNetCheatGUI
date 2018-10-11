@@ -149,15 +149,7 @@ namespace SysNetCheatGUI
 
         private void btnRemoveAddress_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int index = lvStoredAddresses.SelectedIndices[0];
-                lvStoredAddresses.Items.RemoveAt(index);
-            }
-            catch
-            {
-                MessageBox.Show(this.Owner, "Could not delete address.");
-            }
+            DeleteAddress();
         }
 
         private void btnDisconnect_Click(object sender, EventArgs e)
@@ -281,7 +273,7 @@ namespace SysNetCheatGUI
                     {
                         found = true;
                         //Edit Existing Address
-                        lvStoredAddresses.Items[i].SubItems[3].Text = frmAddAddress.Name;
+                        lvStoredAddresses.Items[i].SubItems[3].Text = frmAddAddress.AddressName;
                         lvStoredAddresses.Items[i].SubItems[4].Text = frmAddAddress.ValueSize;
                         lvStoredAddresses.Items[i].SubItems[5].Text = frmAddAddress.Value;
                         break;
@@ -449,6 +441,24 @@ namespace SysNetCheatGUI
                     lvStoredAddresses.Items[i].SubItems[1].Text = (count - 1).ToString();
                     MySwitch.SendCommand(Commands.FreezeAddress, "", address, valueSize, value);
                 }
+            }
+        }
+
+        private void deleteAddressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteAddress();
+        }
+
+        private void DeleteAddress()
+        {
+            try
+            {
+                int index = lvStoredAddresses.SelectedIndices[0];
+                lvStoredAddresses.Items.RemoveAt(index);
+            }
+            catch
+            {
+                MessageBox.Show(this.Owner, "Could not delete address.");
             }
         }
     }

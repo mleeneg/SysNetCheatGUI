@@ -68,6 +68,7 @@
             this.btnAddAddress = new System.Windows.Forms.Button();
             this.btnRemoveAddress = new System.Windows.Forms.Button();
             this.btnDisconnect = new System.Windows.Forms.Button();
+            this.deleteAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbValueSize.SuspendLayout();
             this.cmsStoredAddress.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -297,21 +298,22 @@
             this.cmsStoredAddress.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsStoredAddress.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editNameToolStripMenuItem,
-            this.editValueToolStripMenuItem});
+            this.editValueToolStripMenuItem,
+            this.deleteAddressToolStripMenuItem});
             this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(149, 52);
+            this.cmsStoredAddress.Size = new System.Drawing.Size(211, 104);
             // 
             // editNameToolStripMenuItem
             // 
             this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
-            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editNameToolStripMenuItem.Text = "Edit Name";
             this.editNameToolStripMenuItem.Click += new System.EventHandler(this.editNameToolStripMenuItem_Click);
             // 
             // editValueToolStripMenuItem
             // 
             this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
-            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(148, 24);
+            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
             this.editValueToolStripMenuItem.Text = "Edit Value";
             this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
             // 
@@ -418,6 +420,13 @@
             this.btnDisconnect.UseVisualStyleBackColor = true;
             this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
+            // deleteAddressToolStripMenuItem
+            // 
+            this.deleteAddressToolStripMenuItem.Name = "deleteAddressToolStripMenuItem";
+            this.deleteAddressToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.deleteAddressToolStripMenuItem.Text = "Delete Address";
+            this.deleteAddressToolStripMenuItem.Click += new System.EventHandler(this.deleteAddressToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -499,6 +508,7 @@
         private System.Windows.Forms.ToolStripMenuItem editNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editValueToolStripMenuItem;
         private System.Windows.Forms.Button btnDisconnect;
+        private System.Windows.Forms.ToolStripMenuItem deleteAddressToolStripMenuItem;
     }
 }
 
