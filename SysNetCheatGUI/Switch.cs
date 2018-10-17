@@ -30,6 +30,7 @@ namespace SysNetCheatGUI
         public bool IsNewSearch = true;
         public bool ReadDisplay = true;
         public bool ClickedSearch = false;
+        public bool DisplayDisconnect = false;
         //Default port for the Switch
         public int SwitchPort = 5555;
         //Ip Address
@@ -44,7 +45,6 @@ namespace SysNetCheatGUI
         private Thread _listen;
 
         private FrmMain _mainForm;
-        private string _sConsole;
         private StringBuilder _sbAddresses = new StringBuilder();
         public Switch(FrmMain mainForm)
         {
@@ -91,7 +91,7 @@ namespace SysNetCheatGUI
         /// Will receive messages from console.
         /// </summary>
         public void ReceiveMessages()
-        {   
+        {
             try
             {
                 //while still IsConnected
@@ -105,6 +105,7 @@ namespace SysNetCheatGUI
                         {
                             throw new SocketException();
                         }
+
                         Array.Resize(ref buffer, rec);
                         _sbAddresses.Append(Encoding.Default.GetString(buffer));
                         _sbAddresses.Replace("\0", "");
@@ -112,19 +113,18 @@ namespace SysNetCheatGUI
                         {
                             _mainForm.txtConsole.Invoke(new Action(() =>
                             {
-                                _mainForm.txtConsole.Text =_sbAddresses.ToString();
+                                _mainForm.txtConsole.Text = _sbAddresses.ToString();
                             }));
-                        }   
+                        }
                     }
+
                     GetAddressesFromConsole(buffer);
                     GetAddressResultCount();
                 }
             }
-            catch (Exception e)
+            catch
             {
-                MessageBox.Show("Disconnected! Please Reconnect.");
-                IsConnected = false;
-                Disconnect();
+                Disconnect(false);
             }
         }
 
@@ -246,8 +246,9 @@ namespace SysNetCheatGUI
         /// <summary>
         /// Disconnect the Client
         /// </summary>
-        public void Disconnect()
+        public void Disconnect(bool showMessage)
         {
+            IsConnected = false;
             _mainForm.EnableForm(false,true);
             _br?.Close();
             _bw?.Close();
@@ -261,21 +262,31 @@ namespace SysNetCheatGUI
             {
                 //ignore
             }
-            _mainForm.MySwitch = null;
-
             //last to close
-            _listen?.Abort();
+            _mainForm.MySwitch = null;
+            if (showMessage)
+            {
+                if (MessageBox.Show("Could not communicate to sys-netcheat. Please Reconnect.") == DialogResult.OK ||
+                    MessageBox.Show("Could not communicate to sys-netcheat. Please Reconnect.") == DialogResult.Cancel)
+                {
+                    _listen?.Abort();
+                }
+            }
+            else
+            {
+                _listen?.Abort();
+            }
         }
 
         public void SendPacket(byte[] command)
         {
-            List<byte> listbytecommand = new List<byte>();
+            List<byte> listByteCommand = new List<byte>();
             foreach (byte value in command)
             {
-                listbytecommand.Add(value);
+                listByteCommand.Add(value);
             }
-            listbytecommand.Add(0x0a);//add to complete command.
-            command = listbytecommand.ToArray();
+            listByteCommand.Add(0x0a);//add to complete command.
+            command = listByteCommand.ToArray();
             _bw.Write(command);
         }
 
@@ -303,8 +314,7 @@ namespace SysNetCheatGUI
             }
             catch (System.IO.IOException)
             {
-                MessageBox.Show("Unable to send to sys-netcheat!");
-                Disconnect();
+                Disconnect(true);
             }
         }
 

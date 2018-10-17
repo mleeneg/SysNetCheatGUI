@@ -104,7 +104,7 @@ namespace SysNetCheatGUI
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MySwitch?.Disconnect();
+            MySwitch?.Disconnect(false);
         }
 
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -130,7 +130,7 @@ namespace SysNetCheatGUI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MySwitch?.Disconnect();
+            MySwitch?.Disconnect(false);
             this.Close();
         }
 
@@ -162,7 +162,7 @@ namespace SysNetCheatGUI
 
         private void btnDisconnect_Click(object sender, EventArgs e)
         {
-            MySwitch?.Disconnect();
+            MySwitch?.Disconnect(false);
         }
 
         private void editNameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -369,7 +369,7 @@ namespace SysNetCheatGUI
         private ListViewItem AddListViewItem(string address, string name, string valueType, string value)
         {
             //Create new Instance of Object
-            //Declearing it empty so subset 0 is a checkbox.
+            //Declaring it empty so subset 0 is a checkbox.
             ListViewItem item = new ListViewItem();
             //Add to Item subset 1 Address
             item.SubItems.Add("");
