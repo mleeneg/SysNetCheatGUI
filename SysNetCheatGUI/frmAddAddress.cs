@@ -28,7 +28,10 @@ namespace SysNetCheatGUI
             Address = txtAddress.Text;
             Value = txtValue.Text;
             ValueSize = GetSearchSize();
-            DialogResult = DialogResult.OK;
+            if (ValueSize != "X_X")
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

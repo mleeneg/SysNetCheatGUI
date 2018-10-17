@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace SysNetCheatGUI
@@ -28,10 +30,10 @@ namespace SysNetCheatGUI
             //if MySwitch does not exist
             if (MySwitch == null)
             {
-                //Instanciate a New MySwitch
+                //Instantiate a New MySwitch
                 MySwitch = new Switch(this);
-                //if Not Connected
-                if (!MySwitch.Connected)
+                //if Not IsConnected
+                if (!MySwitch.IsConnected)
                 {
                     //ip = text of txtIPAddress
                     string ip = txtIPAddress.Text;
@@ -40,11 +42,11 @@ namespace SysNetCheatGUI
                     {
                         //Try to connect to Ip Address
                         MySwitch.Connect(ip);
-                        //if Connected
-                        if (MySwitch.SwitchSocket.Connected)
+                        //if IsConnected
+                        if (MySwitch.IsConnected)
                         {
                             //Enable all form objects
-                            EnableForm(true);
+                            EnableForm(true,false);
                         }
                     }
                     catch
@@ -70,8 +72,9 @@ namespace SysNetCheatGUI
                 //No Search size was selected.
                 MessageBox.Show("Select a Search Value Size.");
             }
+
             //If txtValue.Text is not Null/Empty/Blank
-            if (txtValue.Text != null || txtValue.Text.Trim().Equals(""))
+            if (!txtValue.Text.Trim().Equals(""))
             {
                 //if both are true
                 if (MySwitch.SwitchSocket.Connected && OkayToStartSearch)
@@ -82,9 +85,14 @@ namespace SysNetCheatGUI
                     lvAddress.Items.Clear();
                     //Clear Console textbox
                     txtConsole.Clear();
+                    MySwitch.ClearAddresses();
                     //Send MakeCommandString
                     MySwitch.SendCommand(MySwitch.SearchString(), "","",GetSearchSize(),txtValue.Text);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Value Must Be Entered!");
             }
         }
 
@@ -128,7 +136,7 @@ namespace SysNetCheatGUI
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            EnableForm(false);
+            EnableForm(false,false);
         }
 
         private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,18 +178,47 @@ namespace SysNetCheatGUI
             }
         }
 
-        public void EnableForm(bool offOn)
+        public void EnableForm(bool offOn, bool isInvoke)
         {
-            btnNewSearch.Enabled = offOn;
-            btnSearch.Enabled = offOn;
-            txtValue.Enabled = offOn;
-            gbValueSize.Enabled = offOn;
-            lvAddress.Enabled = offOn;
-            lvStoredAddresses.Enabled = offOn;
-            btnAddAddress.Enabled = offOn;
-            btnRemoveAddress.Enabled = offOn;
+            if (isInvoke)
+            {
+                ObjectInvokeEnable(btnNewSearch, offOn);
+                ObjectInvokeEnable(btnSearch, offOn);
+                ObjectInvokeEnable(txtValue, offOn);
+                ObjectInvokeClearText(txtValue);
+                ObjectInvokeClearText(txtConsole);
+                ObjectInvokeEnable(gbValueSize, offOn);
+                ObjectInvokeEnable(lvAddress, offOn);
+                ObjectInvokeEnable(lvStoredAddresses, offOn);
+                ObjectInvokeEnable(btnAddAddress, offOn);
+                ObjectInvokeEnable(btnRemoveAddress, offOn);
+            }
+            else
+            {
+                btnNewSearch.Enabled = offOn;
+                btnSearch.Enabled = offOn;
+                txtValue.Enabled = offOn;
+                txtValue.Text = "";
+                txtConsole.Text = "";
+                gbValueSize.Enabled = offOn;
+                lvAddress.Enabled = offOn;
+                lvStoredAddresses.Enabled = offOn;
+                btnAddAddress.Enabled = offOn;
+                btnRemoveAddress.Enabled = offOn;
+            }
+
         }
 
+        private void ObjectInvokeEnable(Control o, bool b)
+        {
+            if (o.InvokeRequired)
+                o.Invoke(new Action(() => { o.Enabled = b; }));
+        }
+        private void ObjectInvokeClearText(Control o)
+        {
+            if (o.InvokeRequired)
+                o.Invoke(new Action(() => { o.Text = ""; }));
+        }
         /// <summary>
         /// Gets the Search size.
         /// String: u8, u16, u32, or u64

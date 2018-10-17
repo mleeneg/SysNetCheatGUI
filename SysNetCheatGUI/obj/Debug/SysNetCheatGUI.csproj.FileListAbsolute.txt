@@ -41,3 +41,16 @@ G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.pdb
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmEditDialog.resources
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.frmAbout.resources
 G:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmAddAddress.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Debug\SysNetCheatGUI.exe.config
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Debug\SysNetCheatGUI.exe
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\bin\Debug\SysNetCheatGUI.pdb
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.csprojAssemblyReference.cache
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmAbout.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmAddAddress.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmEditDialog.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.FrmMain.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.Properties.Resources.resources
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.csproj.GenerateResource.cache
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.csproj.CoreCompileInputs.cache
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.exe
+F:\GitHub\SysNetCheatGUI\SysNetCheatGUI\obj\Debug\SysNetCheatGUI.pdb
