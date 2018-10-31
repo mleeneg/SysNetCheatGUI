@@ -136,6 +136,7 @@ namespace SysNetCheatGUI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             EnableForm(false,false);
+            txtIPAddress.Text = Properties.Settings.Default.IPAddress;
         }
 
         private void editValueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -494,6 +495,12 @@ namespace SysNetCheatGUI
             {
                 MessageBox.Show(this.Owner, "Could not delete address.");
             }
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.IPAddress = txtIPAddress.Text;
+            Properties.Settings.Default.Save();
         }
     }
 }

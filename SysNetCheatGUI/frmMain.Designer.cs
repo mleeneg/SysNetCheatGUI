@@ -442,6 +442,7 @@
             this.Name = "FrmMain";
             this.Text = "SysNetCheatGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.gbValueSize.ResumeLayout(false);
             this.gbValueSize.PerformLayout();
