@@ -83,8 +83,7 @@ namespace SysNetCheatGUI
                     gbValueSize.Enabled = false;
                     //Clear listView
                     lvAddress.Items.Clear();
-                    //Clear Console textbox
-                    txtConsole.Clear();
+                    lblCountFound.Text = "0";
                     MySwitch.ClearAddresses();
                     //Send MakeCommandString
                     MySwitch.SendCommand(MySwitch.SearchString(), "","",GetSearchSize(),txtValue.Text);
@@ -186,7 +185,6 @@ namespace SysNetCheatGUI
                 ObjectInvokeEnable(btnSearch, offOn);
                 ObjectInvokeEnable(txtValue, offOn);
                 ObjectInvokeClearText(txtValue);
-                ObjectInvokeClearText(txtConsole);
                 ObjectInvokeEnable(gbValueSize, offOn);
                 ObjectInvokeEnable(lvAddress, offOn);
                 ObjectInvokeEnable(lvStoredAddresses, offOn);
@@ -199,7 +197,6 @@ namespace SysNetCheatGUI
                 btnSearch.Enabled = offOn;
                 txtValue.Enabled = offOn;
                 txtValue.Text = "";
-                txtConsole.Text = "";
                 gbValueSize.Enabled = offOn;
                 lvAddress.Enabled = offOn;
                 lvStoredAddresses.Enabled = offOn;

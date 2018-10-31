@@ -42,7 +42,6 @@
             this.radU16 = new System.Windows.Forms.RadioButton();
             this.radU8 = new System.Windows.Forms.RadioButton();
             this.btnConnectSwitch = new System.Windows.Forms.Button();
-            this.txtConsole = new System.Windows.Forms.TextBox();
             this.lvAddress = new System.Windows.Forms.ListView();
             this.colAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,7 +73,7 @@
             // txtIPAddress
             // 
             this.txtIPAddress.Location = new System.Drawing.Point(104, 29);
-            this.txtIPAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIPAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(98, 20);
             this.txtIPAddress.TabIndex = 0;
@@ -93,7 +92,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(292, 59);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(84, 19);
             this.btnSearch.TabIndex = 1;
@@ -104,7 +103,7 @@
             // txtValue
             // 
             this.txtValue.Location = new System.Drawing.Point(242, 84);
-            this.txtValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtValue.Margin = new System.Windows.Forms.Padding(2);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(134, 20);
             this.txtValue.TabIndex = 0;
@@ -113,7 +112,7 @@
             // btnNewSearch
             // 
             this.btnNewSearch.Location = new System.Drawing.Point(206, 59);
-            this.btnNewSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNewSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewSearch.Name = "btnNewSearch";
             this.btnNewSearch.Size = new System.Drawing.Size(82, 19);
             this.btnNewSearch.TabIndex = 2;
@@ -138,9 +137,9 @@
             this.gbValueSize.Controls.Add(this.radU16);
             this.gbValueSize.Controls.Add(this.radU8);
             this.gbValueSize.Location = new System.Drawing.Point(381, 32);
-            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2);
             this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2);
             this.gbValueSize.Size = new System.Drawing.Size(123, 71);
             this.gbValueSize.TabIndex = 4;
             this.gbValueSize.TabStop = false;
@@ -150,7 +149,7 @@
             // 
             this.radU64.AutoSize = true;
             this.radU64.Location = new System.Drawing.Point(63, 39);
-            this.radU64.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU64.Margin = new System.Windows.Forms.Padding(2);
             this.radU64.Name = "radU64";
             this.radU64.Size = new System.Drawing.Size(43, 17);
             this.radU64.TabIndex = 3;
@@ -162,7 +161,7 @@
             // 
             this.radU32.AutoSize = true;
             this.radU32.Location = new System.Drawing.Point(11, 39);
-            this.radU32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU32.Margin = new System.Windows.Forms.Padding(2);
             this.radU32.Name = "radU32";
             this.radU32.Size = new System.Drawing.Size(43, 17);
             this.radU32.TabIndex = 2;
@@ -174,7 +173,7 @@
             // 
             this.radU16.AutoSize = true;
             this.radU16.Location = new System.Drawing.Point(63, 17);
-            this.radU16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU16.Margin = new System.Windows.Forms.Padding(2);
             this.radU16.Name = "radU16";
             this.radU16.Size = new System.Drawing.Size(43, 17);
             this.radU16.TabIndex = 1;
@@ -186,7 +185,7 @@
             // 
             this.radU8.AutoSize = true;
             this.radU8.Location = new System.Drawing.Point(13, 17);
-            this.radU8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radU8.Margin = new System.Windows.Forms.Padding(2);
             this.radU8.Name = "radU8";
             this.radU8.Size = new System.Drawing.Size(37, 17);
             this.radU8.TabIndex = 0;
@@ -197,26 +196,13 @@
             // btnConnectSwitch
             // 
             this.btnConnectSwitch.Location = new System.Drawing.Point(206, 29);
-            this.btnConnectSwitch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConnectSwitch.Margin = new System.Windows.Forms.Padding(2);
             this.btnConnectSwitch.Name = "btnConnectSwitch";
             this.btnConnectSwitch.Size = new System.Drawing.Size(82, 19);
             this.btnConnectSwitch.TabIndex = 5;
             this.btnConnectSwitch.Text = "Connect";
             this.btnConnectSwitch.UseVisualStyleBackColor = true;
             this.btnConnectSwitch.Click += new System.EventHandler(this.btnConnectSwitch_Click);
-            // 
-            // txtConsole
-            // 
-            this.txtConsole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsole.Location = new System.Drawing.Point(204, 107);
-            this.txtConsole.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtConsole.Multiline = true;
-            this.txtConsole.Name = "txtConsole";
-            this.txtConsole.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtConsole.Size = new System.Drawing.Size(301, 140);
-            this.txtConsole.TabIndex = 9;
             // 
             // lvAddress
             // 
@@ -228,10 +214,10 @@
             this.lvAddress.FullRowSelect = true;
             this.lvAddress.GridLines = true;
             this.lvAddress.Location = new System.Drawing.Point(9, 59);
-            this.lvAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvAddress.Margin = new System.Windows.Forms.Padding(2);
             this.lvAddress.MultiSelect = false;
             this.lvAddress.Name = "lvAddress";
-            this.lvAddress.Size = new System.Drawing.Size(192, 224);
+            this.lvAddress.Size = new System.Drawing.Size(192, 245);
             this.lvAddress.TabIndex = 13;
             this.lvAddress.UseCompatibleStateImageBehavior = false;
             this.lvAddress.View = System.Windows.Forms.View.Details;
@@ -249,7 +235,8 @@
             // 
             // lvStoredAddresses
             // 
-            this.lvStoredAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lvStoredAddresses.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvStoredAddresses.CheckBoxes = true;
             this.lvStoredAddresses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -263,11 +250,11 @@
             this.lvStoredAddresses.FullRowSelect = true;
             this.lvStoredAddresses.GridLines = true;
             this.lvStoredAddresses.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvStoredAddresses.Location = new System.Drawing.Point(9, 288);
-            this.lvStoredAddresses.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvStoredAddresses.Location = new System.Drawing.Point(208, 114);
+            this.lvStoredAddresses.Margin = new System.Windows.Forms.Padding(2);
             this.lvStoredAddresses.MultiSelect = false;
             this.lvStoredAddresses.Name = "lvStoredAddresses";
-            this.lvStoredAddresses.Size = new System.Drawing.Size(494, 152);
+            this.lvStoredAddresses.Size = new System.Drawing.Size(452, 190);
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
@@ -346,7 +333,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(509, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(668, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -361,7 +348,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -395,8 +382,8 @@
             // btnAddAddress
             // 
             this.btnAddAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAddress.Image")));
-            this.btnAddAddress.Location = new System.Drawing.Point(422, 252);
-            this.btnAddAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddAddress.Location = new System.Drawing.Point(578, 69);
+            this.btnAddAddress.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAddress.Name = "btnAddAddress";
             this.btnAddAddress.Size = new System.Drawing.Size(39, 31);
             this.btnAddAddress.TabIndex = 18;
@@ -406,8 +393,8 @@
             // btnRemoveAddress
             // 
             this.btnRemoveAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAddress.Image")));
-            this.btnRemoveAddress.Location = new System.Drawing.Point(465, 252);
-            this.btnRemoveAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemoveAddress.Location = new System.Drawing.Point(621, 69);
+            this.btnRemoveAddress.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveAddress.Name = "btnRemoveAddress";
             this.btnRemoveAddress.Size = new System.Drawing.Size(39, 31);
             this.btnRemoveAddress.TabIndex = 19;
@@ -417,7 +404,7 @@
             // btnDisconnect
             // 
             this.btnDisconnect.Location = new System.Drawing.Point(292, 29);
-            this.btnDisconnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisconnect.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(84, 19);
             this.btnDisconnect.TabIndex = 20;
@@ -429,7 +416,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 448);
+            this.ClientSize = new System.Drawing.Size(668, 315);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnRemoveAddress);
             this.Controls.Add(this.btnAddAddress);
@@ -437,7 +424,6 @@
             this.Controls.Add(this.lblFound);
             this.Controls.Add(this.lvStoredAddresses);
             this.Controls.Add(this.lvAddress);
-            this.Controls.Add(this.txtConsole);
             this.Controls.Add(this.btnConnectSwitch);
             this.Controls.Add(this.gbValueSize);
             this.Controls.Add(this.lblValue);
@@ -450,7 +436,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
@@ -494,7 +480,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label lblFound;
         public System.Windows.Forms.TextBox txtValue;
-        public System.Windows.Forms.TextBox txtConsole;
         public System.Windows.Forms.ListView lvAddress;
         public System.Windows.Forms.Label lblCountFound;
         private System.Windows.Forms.ColumnHeader columnHeader2;

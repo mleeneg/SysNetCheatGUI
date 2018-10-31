@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -31,6 +32,10 @@ namespace SysNetCheatGUI
         public bool ReadDisplay = true;
         public bool ClickedSearch = false;
         public bool DisplayDisconnect = false;
+
+        private bool _shouldStop = false;
+        //Regex address format
+        private Regex _r = new Regex(@"\b0x[0-9A-Fa-f]+\b");
         //Default port for the Switch
         public int SwitchPort = 5555;
         //Ip Address
@@ -42,10 +47,13 @@ namespace SysNetCheatGUI
         private BinaryReader _br;
         private BinaryWriter _bw;
 
-        private Thread _listen;
+        public Thread Listen;
 
         private FrmMain _mainForm;
         private StringBuilder _sbAddresses = new StringBuilder();
+        private StringBuilder _replaceAddress;
+        private string _searchValue;
+
         public Switch(FrmMain mainForm)
         {
             _mainForm = mainForm;
@@ -74,8 +82,8 @@ namespace SysNetCheatGUI
                     _bw = new BinaryWriter(_stream);
                     _br = new BinaryReader(_stream);
                     //create thread and start it.
-                    _listen = new Thread(ReceiveMessages) {IsBackground = true};
-                    _listen.Start();
+                    Listen = new Thread(ReceiveMessages) {IsBackground = true};
+                    Listen.Start();
                     //ReceiveMessages();
                 }
                 catch
@@ -87,6 +95,7 @@ namespace SysNetCheatGUI
             }
             //MessageBox.Show(SocketClient.IsConnected == true ? "Switch is IsConnected!" : "Switch is Not IsConnected!");
         }
+
         /// <summary>
         /// Will receive messages from console.
         /// </summary>
@@ -95,37 +104,32 @@ namespace SysNetCheatGUI
             try
             {
                 //while still IsConnected
-                while (IsConnected)
+                while (!_shouldStop)
                 {
+                    //Init Buffer
                     byte[] buffer = new byte[255];
+                    //
                     if (ReadDisplay)
                     {
                         int rec = _stream.Read(buffer, 0, buffer.Length);
-                        if (rec <= 0)
-                        {
-                            throw new SocketException();
-                        }
-
                         Array.Resize(ref buffer, rec);
                         _sbAddresses.Append(Encoding.Default.GetString(buffer));
-                        _sbAddresses.Replace("\0", "");
-                        if (_mainForm.txtConsole.InvokeRequired)
+                        Debug.WriteLine(Encoding.Default.GetString(buffer));
+                        if (_sbAddresses.ToString().Contains(">"))
                         {
-                            _mainForm.txtConsole.Invoke(new Action(() =>
-                            {
-                                _mainForm.txtConsole.Text = _sbAddresses.ToString();
-                            }));
+                            GetAddressesFromConsole();
+                            GetAddressResultCount();
+                            _shouldStop = true;
+                            Listen.Join();
                         }
                     }
-
-                    GetAddressesFromConsole(buffer);
-                    GetAddressResultCount();
                 }
             }
             catch
             {
                 Disconnect(false);
             }
+
         }
 
         private void GetAddressResultCount()
@@ -135,7 +139,7 @@ namespace SysNetCheatGUI
                 _mainForm.lvAddress.Invoke(new Action(() =>
                 {
                     _mainForm.lblCountFound.Text =
-                        (_mainForm.lvAddress.Items.Count < 0)
+                        (_mainForm.lvAddress.Items.Count <= 0)
                             ? "0"
                             : _mainForm.lvAddress.Items.Count.ToString();
                 }));
@@ -145,47 +149,39 @@ namespace SysNetCheatGUI
         /// <summary>
         /// Get Addresses from console
         /// </summary>
-        /// <param name="buffer">Read display from console</param>
-        private void GetAddressesFromConsole(byte[] buffer)
+        private void GetAddressesFromConsole()
         {
             //Get Searched Value
-            string searchValue = _mainForm.txtValue.Text;
-            //If character ">" is found in buffer it means end of console display.
-            if (IndexOf(buffer, new byte[] {0x3e}, 0) > -1)
+            _searchValue = _mainForm.txtValue.Text;
+            //Turn off reading of Console.
+            ReadDisplay = false;
+            //If Search button was presses
+            if (ClickedSearch)
             {
-                //Turn off reading of Console.
-                ReadDisplay = false;
-                //If Search button was presses
-                if (ClickedSearch)
+                //Get string read for regex
+                _sbAddresses.Replace("at ", "at 0x");
+                //Get Matches
+                MatchCollection matchList = _r.Matches(_sbAddresses.ToString());
+                //Because this in a different thread must invoke lvAddress from main thread.
+                if (_mainForm.lvAddress.InvokeRequired)
                 {
-                    //Get string read for regex
-                    _sbAddresses.Replace("at ", "at 0x");
-                    //Regex address format
-                    Regex r = new Regex(@"\b0x[0-9A-Fa-f]+\b");
-                    //Get Matches
-                    MatchCollection matchList = r.Matches(_sbAddresses.ToString());
-                    //Loop thru matches
-                    foreach (var value in matchList)
+                    _mainForm.lvAddress.Invoke(new Action(() =>
                     {
-                        //Because this in a different thread must invoke lvAddress from main thread.
-                        if (_mainForm.lvAddress.InvokeRequired)
+                        //Loop thru matches
+                        foreach (var value in matchList)
                         {
-                            _mainForm.lvAddress.Invoke(new Action(() =>
-                            {
-                                //Removing 0x from Address
-                                string replaceAddress = value.ToString();
-                                replaceAddress = replaceAddress.Replace("0x", "");
-                                //Make New ListViewItem
-                                ListViewItem item = new ListViewItem(replaceAddress);
-                                item.SubItems.Add(searchValue);
-                                //Add ListViewItem to ListView
-                                _mainForm.lvAddress.Items.Add(item);
-                            }));
+                            //Removing 0x from Address
+                            _replaceAddress = new StringBuilder(value.ToString());
+                            _replaceAddress.Replace("0x", "");
+                            //Make New ListViewItem
+                            ListViewItem item = new ListViewItem(_replaceAddress.ToString());
+                            item.SubItems.Add(_searchValue);
+                            //Add ListViewItem to ListView
+                            _mainForm.lvAddress.Items.Add(item);
                         }
-                    }
-
-                    ClickedSearch = false;
+                    }));
                 }
+                ClickedSearch = false;
             }
         }
 
@@ -264,18 +260,8 @@ namespace SysNetCheatGUI
             }
             //last to close
             _mainForm.MySwitch = null;
-            if (showMessage)
-            {
-                if (MessageBox.Show("Could not communicate to sys-netcheat. Please Reconnect.") == DialogResult.OK ||
-                    MessageBox.Show("Could not communicate to sys-netcheat. Please Reconnect.") == DialogResult.Cancel)
-                {
-                    _listen?.Abort();
-                }
-            }
-            else
-            {
-                _listen?.Abort();
-            }
+            Listen?.Abort();
+            Listen = null;
         }
 
         public void SendPacket(byte[] command)
@@ -287,6 +273,9 @@ namespace SysNetCheatGUI
             }
             listByteCommand.Add(0x0a);//add to complete command.
             command = listByteCommand.ToArray();
+            _shouldStop = false;
+            Listen = new Thread(ReceiveMessages) { IsBackground = true };
+            Listen.Start();
             _bw.Write(command);
         }
 
