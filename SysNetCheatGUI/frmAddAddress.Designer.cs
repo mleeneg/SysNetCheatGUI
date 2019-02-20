@@ -36,12 +36,9 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtValue = new System.Windows.Forms.TextBox();
-            this.gbValueSize = new System.Windows.Forms.GroupBox();
-            this.radU64 = new System.Windows.Forms.RadioButton();
-            this.radU32 = new System.Windows.Forms.RadioButton();
-            this.radU16 = new System.Windows.Forms.RadioButton();
-            this.radU8 = new System.Windows.Forms.RadioButton();
-            this.gbValueSize.SuspendLayout();
+            this.cbValueType = new System.Windows.Forms.ComboBox();
+            this.lblValueType = new System.Windows.Forms.Label();
+            this.cbPoke = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +64,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 107);
+            this.label4.Location = new System.Drawing.Point(11, 91);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 13);
@@ -76,8 +73,8 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(140, 136);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Location = new System.Drawing.Point(141, 109);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 19);
             this.btnAdd.TabIndex = 4;
@@ -87,8 +84,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(201, 136);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(202, 109);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 19);
             this.btnCancel.TabIndex = 5;
@@ -98,97 +95,70 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(80, 3);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtName.Location = new System.Drawing.Point(93, 3);
+            this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(178, 20);
+            this.txtName.Size = new System.Drawing.Size(165, 20);
             this.txtName.TabIndex = 6;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(80, 31);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAddress.Location = new System.Drawing.Point(93, 31);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(178, 20);
+            this.txtAddress.Size = new System.Drawing.Size(165, 20);
             this.txtAddress.TabIndex = 7;
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(81, 105);
-            this.txtValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtValue.Location = new System.Drawing.Point(93, 84);
+            this.txtValue.Margin = new System.Windows.Forms.Padding(2);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(178, 20);
+            this.txtValue.Size = new System.Drawing.Size(165, 20);
             this.txtValue.TabIndex = 8;
             // 
-            // gbValueSize
+            // cbValueType
             // 
-            this.gbValueSize.Controls.Add(this.radU64);
-            this.gbValueSize.Controls.Add(this.radU32);
-            this.gbValueSize.Controls.Add(this.radU16);
-            this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(12, 54);
-            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.gbValueSize.Size = new System.Drawing.Size(246, 41);
-            this.gbValueSize.TabIndex = 9;
-            this.gbValueSize.TabStop = false;
-            this.gbValueSize.Text = "Value Size";
+            this.cbValueType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbValueType.FormattingEnabled = true;
+            this.cbValueType.Items.AddRange(new object[] {
+            "u8",
+            "u16",
+            "u32",
+            "u64"});
+            this.cbValueType.Location = new System.Drawing.Point(93, 58);
+            this.cbValueType.Name = "cbValueType";
+            this.cbValueType.Size = new System.Drawing.Size(165, 21);
+            this.cbValueType.TabIndex = 24;
             // 
-            // radU64
+            // lblValueType
             // 
-            this.radU64.AutoSize = true;
-            this.radU64.Location = new System.Drawing.Point(202, 17);
-            this.radU64.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radU64.Name = "radU64";
-            this.radU64.Size = new System.Drawing.Size(43, 17);
-            this.radU64.TabIndex = 3;
-            this.radU64.TabStop = true;
-            this.radU64.Text = "u64";
-            this.radU64.UseVisualStyleBackColor = true;
+            this.lblValueType.AutoSize = true;
+            this.lblValueType.Location = new System.Drawing.Point(9, 61);
+            this.lblValueType.Name = "lblValueType";
+            this.lblValueType.Size = new System.Drawing.Size(61, 13);
+            this.lblValueType.TabIndex = 23;
+            this.lblValueType.Text = "Value Type";
             // 
-            // radU32
+            // cbPoke
             // 
-            this.radU32.AutoSize = true;
-            this.radU32.Location = new System.Drawing.Point(141, 17);
-            this.radU32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radU32.Name = "radU32";
-            this.radU32.Size = new System.Drawing.Size(43, 17);
-            this.radU32.TabIndex = 2;
-            this.radU32.TabStop = true;
-            this.radU32.Text = "u32";
-            this.radU32.UseVisualStyleBackColor = true;
-            // 
-            // radU16
-            // 
-            this.radU16.AutoSize = true;
-            this.radU16.Location = new System.Drawing.Point(69, 17);
-            this.radU16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radU16.Name = "radU16";
-            this.radU16.Size = new System.Drawing.Size(43, 17);
-            this.radU16.TabIndex = 1;
-            this.radU16.TabStop = true;
-            this.radU16.Text = "u16";
-            this.radU16.UseVisualStyleBackColor = true;
-            // 
-            // radU8
-            // 
-            this.radU8.AutoSize = true;
-            this.radU8.Location = new System.Drawing.Point(13, 17);
-            this.radU8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.radU8.Name = "radU8";
-            this.radU8.Size = new System.Drawing.Size(37, 17);
-            this.radU8.TabIndex = 0;
-            this.radU8.TabStop = true;
-            this.radU8.Text = "u8";
-            this.radU8.UseVisualStyleBackColor = true;
+            this.cbPoke.AutoSize = true;
+            this.cbPoke.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbPoke.Location = new System.Drawing.Point(10, 112);
+            this.cbPoke.Name = "cbPoke";
+            this.cbPoke.Size = new System.Drawing.Size(98, 17);
+            this.cbPoke.TabIndex = 25;
+            this.cbPoke.Text = "Poke Address?";
+            this.cbPoke.UseVisualStyleBackColor = true;
             // 
             // FrmAddAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 160);
-            this.Controls.Add(this.gbValueSize);
+            this.ClientSize = new System.Drawing.Size(266, 131);
+            this.Controls.Add(this.cbPoke);
+            this.Controls.Add(this.cbValueType);
+            this.Controls.Add(this.lblValueType);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtName);
@@ -198,14 +168,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddAddress";
             this.ShowIcon = false;
             this.Text = "Add Address";
-            this.gbValueSize.ResumeLayout(false);
-            this.gbValueSize.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,10 +189,8 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtValue;
-        private System.Windows.Forms.GroupBox gbValueSize;
-        private System.Windows.Forms.RadioButton radU64;
-        private System.Windows.Forms.RadioButton radU32;
-        private System.Windows.Forms.RadioButton radU16;
-        private System.Windows.Forms.RadioButton radU8;
+        private System.Windows.Forms.ComboBox cbValueType;
+        private System.Windows.Forms.Label lblValueType;
+        private System.Windows.Forms.CheckBox cbPoke;
     }
 }

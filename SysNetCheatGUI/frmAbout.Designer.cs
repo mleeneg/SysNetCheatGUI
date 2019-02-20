@@ -43,18 +43,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 36);
+            this.label2.Location = new System.Drawing.Point(8, 31);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 17);
+            this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "A WinForms GUI for";
             // 
             // linkJakibaki
             // 
             this.linkJakibaki.AutoSize = true;
-            this.linkJakibaki.Location = new System.Drawing.Point(141, 36);
+            this.linkJakibaki.Location = new System.Drawing.Point(113, 31);
+            this.linkJakibaki.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkJakibaki.Name = "linkJakibaki";
-            this.linkJakibaki.Size = new System.Drawing.Size(89, 17);
+            this.linkJakibaki.Size = new System.Drawing.Size(67, 13);
             this.linkJakibaki.TabIndex = 2;
             this.linkJakibaki.TabStop = true;
             this.linkJakibaki.Text = "sys-netcheat";
@@ -63,27 +65,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(226, 36);
+            this.label3.Location = new System.Drawing.Point(184, 31);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 17);
+            this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "by jakibaki.";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 62);
+            this.label4.Location = new System.Drawing.Point(8, 44);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
+            this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Inspired by";
             // 
             // linkTesnos
             // 
             this.linkTesnos.AutoSize = true;
-            this.linkTesnos.Location = new System.Drawing.Point(85, 62);
+            this.linkTesnos.Location = new System.Drawing.Point(70, 44);
+            this.linkTesnos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkTesnos.Name = "linkTesnos";
-            this.linkTesnos.Size = new System.Drawing.Size(113, 17);
+            this.linkTesnos.Size = new System.Drawing.Size(84, 13);
             this.linkTesnos.TabIndex = 5;
             this.linkTesnos.TabStop = true;
             this.linkTesnos.Text = "sys-netcheat-gui";
@@ -92,46 +97,50 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(194, 62);
+            this.label5.Location = new System.Drawing.Point(158, 44);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 17);
+            this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "by tesnos.";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 100);
+            this.label6.Location = new System.Drawing.Point(8, 70);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 17);
+            this.label6.Size = new System.Drawing.Size(91, 13);
             this.label6.TabIndex = 7;
             this.label6.Text = "Made by mleeneg";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 129);
+            this.label7.Location = new System.Drawing.Point(8, 57);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(261, 17);
+            this.label7.Size = new System.Drawing.Size(195, 13);
             this.label7.TabIndex = 8;
-            this.label7.Text = "Thanks to Meth For the Extension Code.";
+            this.label7.Text = "Thanks to Meth for the Extension Code.";
             // 
             // linkMleeneg
             // 
             this.linkMleeneg.AutoSize = true;
-            this.linkMleeneg.Location = new System.Drawing.Point(12, 9);
+            this.linkMleeneg.Location = new System.Drawing.Point(8, 8);
+            this.linkMleeneg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkMleeneg.Name = "linkMleeneg";
-            this.linkMleeneg.Size = new System.Drawing.Size(114, 17);
+            this.linkMleeneg.Size = new System.Drawing.Size(88, 13);
             this.linkMleeneg.TabIndex = 9;
             this.linkMleeneg.TabStop = true;
             this.linkMleeneg.Text = "SysNetCheatGUI";
             this.linkMleeneg.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkMleeneg_LinkClicked);
             // 
-            // frmAbout
+            // FrmAbout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(312, 170);
+            this.ClientSize = new System.Drawing.Size(258, 89);
             this.Controls.Add(this.linkMleeneg);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -143,9 +152,10 @@
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmAbout";
+            this.Name = "FrmAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             this.ResumeLayout(false);

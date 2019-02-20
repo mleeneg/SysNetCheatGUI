@@ -22,7 +22,8 @@ namespace SysNetCheatGUI
         public FrmMain()
         {
             InitializeComponent();
-            radU32.Checked = true;
+            cbValueType.SelectedIndex = 2;
+            txtDisplayAmount.Text = "1000";
         }
 
         private void btnConnectSwitch_Click(object sender, EventArgs e)
@@ -61,33 +62,35 @@ namespace SysNetCheatGUI
         {
             //Set ClickSearch to true
             MySwitch.ClickedSearch = true;
+            bool validDisplayAmount = int.TryParse(txtDisplayAmount.Text, out MySwitch.DisplayAmount);
+            if (MySwitch.DisplayAmount < 100 || MySwitch.DisplayAmount > 10000)
+            {
+                validDisplayAmount = false;
+            }
+            bool valid = int.TryParse(txtValue.Text,out int value);
             //if GetSearchSize doesn't return Invalid response
-            if (GetSearchSize() != "X_X")
+            if (SearchSize!= "0" && valid && validDisplayAmount)
             {
                 //set OkayToStartSearch to true
                 OkayToStartSearch = true;
             }
             else
             {
-                //No Search size was selected.
-                MessageBox.Show("Select a Search Value Size.");
+                MessageBox.Show("Search Not Valid!");
             }
-
             //If txtValue.Text is not Null/Empty/Blank
             if (!txtValue.Text.Trim().Equals(""))
             {
                 //if both are true
-                if (MySwitch.SwitchSocket.Connected && OkayToStartSearch)
-                {
-                    //Disable Groupbox
-                    gbValueSize.Enabled = false;
-                    //Clear listView
-                    lvAddress.Items.Clear();
-                    lblCountFound.Text = "0";
-                    MySwitch.ClearAddresses();
-                    //Send MakeCommandString
-                    MySwitch.SendCommand(MySwitch.SearchString(), "","",GetSearchSize(),txtValue.Text);
-                }
+                if (!MySwitch.SwitchClient.Connected || !OkayToStartSearch) return;
+                //Disable value type
+                cbValueType.Enabled = false;
+                //Clear listView
+                lvAddress.Items.Clear();
+                lblCountFound.Text = "Searching";
+                MySwitch.ClearAddresses();
+                //Send MakeCommandString
+                MySwitch.SendCommand(MySwitch.SearchString(),"","",SearchSize,value.ToString());
             }
             else
             {
@@ -98,7 +101,7 @@ namespace SysNetCheatGUI
         private void btnNewSearch_Click(object sender, EventArgs e)
         {
             MySwitch.IsNewSearch = true;
-            gbValueSize.Enabled = true;
+            cbValueType.Enabled = true;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -108,6 +111,10 @@ namespace SysNetCheatGUI
 
         private void txtValue_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == (char) 13)
             {
                 btnSearch_Click(sender, e);
@@ -165,9 +172,9 @@ namespace SysNetCheatGUI
             MySwitch?.Disconnect(false);
         }
 
-        private void editNameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void editDescriptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EditNameValue();
+            EditDescriptionValue();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -185,12 +192,13 @@ namespace SysNetCheatGUI
                 ObjectInvokeEnable(btnNewSearch, offOn);
                 ObjectInvokeEnable(btnSearch, offOn);
                 ObjectInvokeEnable(txtValue, offOn);
-                ObjectInvokeClearText(txtValue);
-                ObjectInvokeEnable(gbValueSize, offOn);
+                ObjectInvokeClearText(txtValue);                
                 ObjectInvokeEnable(lvAddress, offOn);
                 ObjectInvokeEnable(lvStoredAddresses, offOn);
                 ObjectInvokeEnable(btnAddAddress, offOn);
                 ObjectInvokeEnable(btnRemoveAddress, offOn);
+                ObjectInvokeEnable(cbValueType, offOn);
+                ObjectInvokeEnable(txtDisplayAmount, offOn);
             }
             else
             {
@@ -198,11 +206,12 @@ namespace SysNetCheatGUI
                 btnSearch.Enabled = offOn;
                 txtValue.Enabled = offOn;
                 txtValue.Text = "";
-                gbValueSize.Enabled = offOn;
                 lvAddress.Enabled = offOn;
                 lvStoredAddresses.Enabled = offOn;
                 btnAddAddress.Enabled = offOn;
                 btnRemoveAddress.Enabled = offOn;
+                cbValueType.Enabled = offOn;
+                txtDisplayAmount.Enabled = offOn;
             }
 
         }
@@ -222,17 +231,29 @@ namespace SysNetCheatGUI
         /// String: u8, u16, u32, or u64
         /// </summary>
         /// <returns></returns>
-        private string GetSearchSize()
+        private string SearchSize
         {
-            if (radU8.Checked)
-                return "u8";
-            if (radU16.Checked)
-                return "u16";
-            if (radU32.Checked)
-                return "u32";
-            if (radU64.Checked)
-                return "u64";
-            return "X_X";
+            get
+            {
+                string valueType = "0";
+                switch (cbValueType.SelectedIndex)
+                {
+                    case 0:
+                        valueType = "u8";
+                        break;
+                    case 1:
+                        valueType = "u16";
+                        break;
+                    case 2:
+                        valueType = "u32";
+                        break;
+                    case 3:
+                        valueType = "u64";
+                        break;
+                }
+
+                return valueType;
+            }
         }
 
         private void AddAddress()
@@ -270,7 +291,7 @@ namespace SysNetCheatGUI
                         {
                             //Else Add a new Address
                             lvStoredAddresses.Items.Add(AddListViewItem(
-                                lvAddress.Items[index].SubItems[0].Text, "", GetSearchSize(),
+                                lvAddress.Items[index].SubItems[0].Text, "", SearchSize,
                                 editValue.Value));
                         }
                     }
@@ -278,12 +299,12 @@ namespace SysNetCheatGUI
                     {
                         //Else Add a new Address
                         lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[0].Text, "",
-                            GetSearchSize(), editValue.Value));
+                            SearchSize, editValue.Value));
                     }
                 }
 
                 MySwitch.SendCommand(Commands.PokeAddress, "", lvAddress.Items[index].SubItems[0].Text,
-                    GetSearchSize(), editValue.Value);
+                    SearchSize, editValue.Value);
             }
         }
 
@@ -326,41 +347,55 @@ namespace SysNetCheatGUI
             else
             {
                 //Else Add a new Address
-                lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.Name,
+                lvStoredAddresses.Items.Add(AddListViewItem(frmAddAddress.Address, frmAddAddress.AddressName,
                     frmAddAddress.ValueSize,
                     frmAddAddress.Value));
             }
-
-            MySwitch.SendCommand(Commands.PokeAddress, "", frmAddAddress.Address,
+            if(frmAddAddress.PokeAddress)
+                MySwitch.SendCommand(Commands.PokeAddress, "", frmAddAddress.Address,
                 frmAddAddress.ValueSize, frmAddAddress.Value);
         }
 
         private void EditAddressValue()
         {
             int index = lvStoredAddresses.SelectedIndex();
-            using (FrmEditDialog editValue = new FrmEditDialog(_editValue))
+            try
             {
-                if (editValue.ShowDialog() == DialogResult.OK)
+                if (lvStoredAddresses.Items[index].SubItems[2].Text == "") return;
+                using (FrmEditDialog editValue = new FrmEditDialog(_editValue))
                 {
+                    if (editValue.ShowDialog() != DialogResult.OK) return;
                     //Edit Existing Address
                     lvStoredAddresses.Items[index].SubItems[5].Text = editValue.Value;
 
                     MySwitch.SendCommand(Commands.PokeAddress, "", lvStoredAddresses.Items[index].SubItems[2].Text,
-                        GetSearchSize(), editValue.Value);
+                        SearchSize, editValue.Value);
                 }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("No Valid Address!");
             }
         }
 
-        private void EditNameValue()
+        private void EditDescriptionValue()
         {
             int index = lvStoredAddresses.SelectedIndex();
-            using (FrmEditDialog editValue = new FrmEditDialog(_editName))
+            try
             {
-                if (editValue.ShowDialog() == DialogResult.OK)
+                if (lvStoredAddresses.Items[index].SubItems[2].Text == "") return;
+                using (FrmEditDialog editValue = new FrmEditDialog(_editName))
                 {
-                    //Edit Name
-                    lvStoredAddresses.Items[index].SubItems[3].Text = editValue.Value;
+                    if (editValue.ShowDialog() == DialogResult.OK)
+                    {
+                        //Edit Name
+                        lvStoredAddresses.Items[index].SubItems[3].Text = editValue.Value;
+                    }
                 }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("No Valid Address!");
             }
         }
 
@@ -440,22 +475,18 @@ namespace SysNetCheatGUI
             {
                 string id = lvStoredAddresses.Items[i].SubItems[1].Text;
                 //Check if Checkboxes are checked and their IDs are not blank
-                if (!lvStoredAddresses.Items[i].Checked && !id.Equals(""))
+                if (lvStoredAddresses.Items[i].Checked || id.Equals("")) continue;
+                //Remove Frozen address at Index
+                MySwitch.SendCommand(Commands.UnFreezeAddress, id, "", "", "");
+                //Set ID to blank
+                lvStoredAddresses.Items[i].SubItems[1].Text = "";
+                //Modify IDs of other address.
+                for (int p = 0; p < lvStoredAddresses.Items.Count; p++)
                 {
-                    //Remove Frozen address at Index
-                    MySwitch.SendCommand(Commands.UnFreezeAddress, id, "", "", "");
-                    //Set ID to blank
-                    lvStoredAddresses.Items[i].SubItems[1].Text = "";
-                    //Modify IDs of other address.
-                    for (int p = 0; p < lvStoredAddresses.Items.Count; p++)
-                    {
-                        if (lvStoredAddresses.Items[p].Checked &&
-                            int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) > int.Parse(id))
-                        {
-                            int newId = int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) - 1;
-                            lvStoredAddresses.Items[p].SubItems[1].Text = newId.ToString();
-                        }
-                    }
+                    if (!lvStoredAddresses.Items[p].Checked ||
+                        int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) <= int.Parse(id)) continue;
+                    int newId = int.Parse(lvStoredAddresses.Items[p].SubItems[1].Text) - 1;
+                    lvStoredAddresses.Items[p].SubItems[1].Text = newId.ToString();
                 }
             }
         }
@@ -467,19 +498,17 @@ namespace SysNetCheatGUI
             {
                 string id = lvStoredAddresses.Items[i].SubItems[1].Text;
                 //if checked & id is blank
-                if (lvStoredAddresses.Items[i].Checked && id.Equals(""))
-                {
-                    string address = lvStoredAddresses.Items[i].SubItems[2].Text;
-                    string valueSize = lvStoredAddresses.Items[i].SubItems[4].Text;
-                    string value = lvStoredAddresses.Items[i].SubItems[5].Text;
+                if (!lvStoredAddresses.Items[i].Checked || !id.Equals("")) continue;
+                string address = lvStoredAddresses.Items[i].SubItems[2].Text;
+                string valueSize = lvStoredAddresses.Items[i].SubItems[4].Text;
+                string value = lvStoredAddresses.Items[i].SubItems[5].Text;
 
-                    lvStoredAddresses.Items[i].SubItems[1].Text = (count - 1).ToString();
-                    MySwitch.SendCommand(Commands.FreezeAddress, "", address, valueSize, value);
-                }
+                lvStoredAddresses.Items[i].SubItems[1].Text = (count - 1).ToString();
+                MySwitch.SendCommand(Commands.FreezeAddress, "", address, valueSize, value);
             }
         }
 
-        private void deleteAddressToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteAddressToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteAddress();
         }
@@ -501,6 +530,14 @@ namespace SysNetCheatGUI
         {
             Properties.Settings.Default.IPAddress = txtIPAddress.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void txtDisplayAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -36,11 +36,6 @@
             this.txtValue = new System.Windows.Forms.TextBox();
             this.btnNewSearch = new System.Windows.Forms.Button();
             this.lblValue = new System.Windows.Forms.Label();
-            this.gbValueSize = new System.Windows.Forms.GroupBox();
-            this.radU64 = new System.Windows.Forms.RadioButton();
-            this.radU32 = new System.Windows.Forms.RadioButton();
-            this.radU16 = new System.Windows.Forms.RadioButton();
-            this.radU8 = new System.Windows.Forms.RadioButton();
             this.btnConnectSwitch = new System.Windows.Forms.Button();
             this.lvAddress = new System.Windows.Forms.ListView();
             this.colAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,19 +48,22 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmsStoredAddress = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editDescriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblFound = new System.Windows.Forms.Label();
             this.lblCountFound = new System.Windows.Forms.Label();
             this.btnAddAddress = new System.Windows.Forms.Button();
             this.btnRemoveAddress = new System.Windows.Forms.Button();
             this.btnDisconnect = new System.Windows.Forms.Button();
-            this.gbValueSize.SuspendLayout();
+            this.lblValueType = new System.Windows.Forms.Label();
+            this.cbValueType = new System.Windows.Forms.ComboBox();
+            this.lblDisplayAmount = new System.Windows.Forms.Label();
+            this.txtDisplayAmount = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmsStoredAddress.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,10 +89,10 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(292, 59);
+            this.btnSearch.Location = new System.Drawing.Point(328, 70);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(84, 19);
+            this.btnSearch.Size = new System.Drawing.Size(130, 19);
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -102,19 +100,19 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(242, 84);
+            this.txtValue.Location = new System.Drawing.Point(266, 95);
             this.txtValue.Margin = new System.Windows.Forms.Padding(2);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(134, 20);
+            this.txtValue.Size = new System.Drawing.Size(192, 20);
             this.txtValue.TabIndex = 0;
             this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValue_KeyPress);
             // 
             // btnNewSearch
             // 
-            this.btnNewSearch.Location = new System.Drawing.Point(206, 59);
+            this.btnNewSearch.Location = new System.Drawing.Point(206, 70);
             this.btnNewSearch.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewSearch.Name = "btnNewSearch";
-            this.btnNewSearch.Size = new System.Drawing.Size(82, 19);
+            this.btnNewSearch.Size = new System.Drawing.Size(118, 19);
             this.btnNewSearch.TabIndex = 2;
             this.btnNewSearch.Text = "New Search";
             this.btnNewSearch.UseVisualStyleBackColor = true;
@@ -123,75 +121,12 @@
             // lblValue
             // 
             this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(204, 87);
+            this.lblValue.Location = new System.Drawing.Point(204, 98);
             this.lblValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(34, 13);
             this.lblValue.TabIndex = 3;
             this.lblValue.Text = "Value";
-            // 
-            // gbValueSize
-            // 
-            this.gbValueSize.Controls.Add(this.radU64);
-            this.gbValueSize.Controls.Add(this.radU32);
-            this.gbValueSize.Controls.Add(this.radU16);
-            this.gbValueSize.Controls.Add(this.radU8);
-            this.gbValueSize.Location = new System.Drawing.Point(381, 32);
-            this.gbValueSize.Margin = new System.Windows.Forms.Padding(2);
-            this.gbValueSize.Name = "gbValueSize";
-            this.gbValueSize.Padding = new System.Windows.Forms.Padding(2);
-            this.gbValueSize.Size = new System.Drawing.Size(123, 71);
-            this.gbValueSize.TabIndex = 4;
-            this.gbValueSize.TabStop = false;
-            this.gbValueSize.Text = "Value Size";
-            // 
-            // radU64
-            // 
-            this.radU64.AutoSize = true;
-            this.radU64.Location = new System.Drawing.Point(63, 39);
-            this.radU64.Margin = new System.Windows.Forms.Padding(2);
-            this.radU64.Name = "radU64";
-            this.radU64.Size = new System.Drawing.Size(43, 17);
-            this.radU64.TabIndex = 3;
-            this.radU64.TabStop = true;
-            this.radU64.Text = "u64";
-            this.radU64.UseVisualStyleBackColor = true;
-            // 
-            // radU32
-            // 
-            this.radU32.AutoSize = true;
-            this.radU32.Location = new System.Drawing.Point(11, 39);
-            this.radU32.Margin = new System.Windows.Forms.Padding(2);
-            this.radU32.Name = "radU32";
-            this.radU32.Size = new System.Drawing.Size(43, 17);
-            this.radU32.TabIndex = 2;
-            this.radU32.TabStop = true;
-            this.radU32.Text = "u32";
-            this.radU32.UseVisualStyleBackColor = true;
-            // 
-            // radU16
-            // 
-            this.radU16.AutoSize = true;
-            this.radU16.Location = new System.Drawing.Point(63, 17);
-            this.radU16.Margin = new System.Windows.Forms.Padding(2);
-            this.radU16.Name = "radU16";
-            this.radU16.Size = new System.Drawing.Size(43, 17);
-            this.radU16.TabIndex = 1;
-            this.radU16.TabStop = true;
-            this.radU16.Text = "u16";
-            this.radU16.UseVisualStyleBackColor = true;
-            // 
-            // radU8
-            // 
-            this.radU8.AutoSize = true;
-            this.radU8.Location = new System.Drawing.Point(13, 17);
-            this.radU8.Margin = new System.Windows.Forms.Padding(2);
-            this.radU8.Name = "radU8";
-            this.radU8.Size = new System.Drawing.Size(37, 17);
-            this.radU8.TabIndex = 0;
-            this.radU8.TabStop = true;
-            this.radU8.Text = "u8";
-            this.radU8.UseVisualStyleBackColor = true;
             // 
             // btnConnectSwitch
             // 
@@ -206,18 +141,16 @@
             // 
             // lvAddress
             // 
-            this.lvAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.lvAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colAddress,
             this.colValue});
             this.lvAddress.FullRowSelect = true;
             this.lvAddress.GridLines = true;
-            this.lvAddress.Location = new System.Drawing.Point(9, 59);
+            this.lvAddress.Location = new System.Drawing.Point(9, 69);
             this.lvAddress.Margin = new System.Windows.Forms.Padding(2);
             this.lvAddress.MultiSelect = false;
             this.lvAddress.Name = "lvAddress";
-            this.lvAddress.Size = new System.Drawing.Size(192, 245);
+            this.lvAddress.Size = new System.Drawing.Size(192, 225);
             this.lvAddress.TabIndex = 13;
             this.lvAddress.UseCompatibleStateImageBehavior = false;
             this.lvAddress.View = System.Windows.Forms.View.Details;
@@ -250,11 +183,11 @@
             this.lvStoredAddresses.FullRowSelect = true;
             this.lvStoredAddresses.GridLines = true;
             this.lvStoredAddresses.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvStoredAddresses.Location = new System.Drawing.Point(208, 114);
+            this.lvStoredAddresses.Location = new System.Drawing.Point(9, 299);
             this.lvStoredAddresses.Margin = new System.Windows.Forms.Padding(2);
             this.lvStoredAddresses.MultiSelect = false;
             this.lvStoredAddresses.Name = "lvStoredAddresses";
-            this.lvStoredAddresses.Size = new System.Drawing.Size(452, 190);
+            this.lvStoredAddresses.Size = new System.Drawing.Size(453, 236);
             this.lvStoredAddresses.TabIndex = 14;
             this.lvStoredAddresses.UseCompatibleStateImageBehavior = false;
             this.lvStoredAddresses.View = System.Windows.Forms.View.Details;
@@ -281,7 +214,7 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Name";
+            this.columnHeader6.Text = "Description";
             this.columnHeader6.Width = 130;
             // 
             // columnHeader7
@@ -297,32 +230,32 @@
             // 
             this.cmsStoredAddress.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsStoredAddress.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editNameToolStripMenuItem,
+            this.editDescriptionToolStripMenuItem,
             this.editValueToolStripMenuItem,
             this.deleteAddressToolStripMenuItem});
             this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(153, 70);
+            this.cmsStoredAddress.Size = new System.Drawing.Size(181, 92);
             // 
-            // editNameToolStripMenuItem
+            // editDescriptionToolStripMenuItem
             // 
-            this.editNameToolStripMenuItem.Name = "editNameToolStripMenuItem";
-            this.editNameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editNameToolStripMenuItem.Text = "Edit Name";
-            this.editNameToolStripMenuItem.Click += new System.EventHandler(this.editNameToolStripMenuItem_Click);
+            this.editDescriptionToolStripMenuItem.Name = "editDescriptionToolStripMenuItem";
+            this.editDescriptionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editDescriptionToolStripMenuItem.Text = "Edit Description";
+            this.editDescriptionToolStripMenuItem.Click += new System.EventHandler(this.editDescriptionToolStripMenuItem_Click);
             // 
             // editValueToolStripMenuItem
             // 
             this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
-            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editValueToolStripMenuItem.Text = "Edit Value";
             this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
             // 
             // deleteAddressToolStripMenuItem
             // 
             this.deleteAddressToolStripMenuItem.Name = "deleteAddressToolStripMenuItem";
-            this.deleteAddressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteAddressToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteAddressToolStripMenuItem.Text = "Delete Address";
-            this.deleteAddressToolStripMenuItem.Click += new System.EventHandler(this.deleteAddressToolStripMenuItem_Click);
+            this.deleteAddressToolStripMenuItem.Click += new System.EventHandler(this.DeleteAddressToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -333,7 +266,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(668, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(470, 24);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -348,7 +281,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -359,45 +292,35 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // lblFound
-            // 
-            this.lblFound.AutoSize = true;
-            this.lblFound.Location = new System.Drawing.Point(9, 43);
-            this.lblFound.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFound.Name = "lblFound";
-            this.lblFound.Size = new System.Drawing.Size(37, 13);
-            this.lblFound.TabIndex = 16;
-            this.lblFound.Text = "Found";
-            // 
             // lblCountFound
             // 
             this.lblCountFound.AutoSize = true;
-            this.lblCountFound.Location = new System.Drawing.Point(45, 43);
+            this.lblCountFound.Location = new System.Drawing.Point(10, 53);
             this.lblCountFound.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCountFound.Name = "lblCountFound";
-            this.lblCountFound.Size = new System.Drawing.Size(13, 13);
+            this.lblCountFound.Size = new System.Drawing.Size(75, 13);
             this.lblCountFound.TabIndex = 17;
-            this.lblCountFound.Text = "0";
+            this.lblCountFound.Text = "Displaying 0/0";
             // 
             // btnAddAddress
             // 
-            this.btnAddAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnAddAddress.Image")));
-            this.btnAddAddress.Location = new System.Drawing.Point(578, 69);
+            this.btnAddAddress.Location = new System.Drawing.Point(206, 276);
             this.btnAddAddress.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddAddress.Name = "btnAddAddress";
-            this.btnAddAddress.Size = new System.Drawing.Size(39, 31);
+            this.btnAddAddress.Size = new System.Drawing.Size(100, 19);
             this.btnAddAddress.TabIndex = 18;
+            this.btnAddAddress.Text = "Add Address";
             this.btnAddAddress.UseVisualStyleBackColor = true;
             this.btnAddAddress.Click += new System.EventHandler(this.btnAddAddress_Click);
             // 
             // btnRemoveAddress
             // 
-            this.btnRemoveAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveAddress.Image")));
-            this.btnRemoveAddress.Location = new System.Drawing.Point(621, 69);
+            this.btnRemoveAddress.Location = new System.Drawing.Point(313, 276);
             this.btnRemoveAddress.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveAddress.Name = "btnRemoveAddress";
-            this.btnRemoveAddress.Size = new System.Drawing.Size(39, 31);
+            this.btnRemoveAddress.Size = new System.Drawing.Size(148, 19);
             this.btnRemoveAddress.TabIndex = 19;
+            this.btnRemoveAddress.Text = "Remove Selected Address";
             this.btnRemoveAddress.UseVisualStyleBackColor = true;
             this.btnRemoveAddress.Click += new System.EventHandler(this.btnRemoveAddress_Click);
             // 
@@ -412,20 +335,73 @@
             this.btnDisconnect.UseVisualStyleBackColor = true;
             this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
+            // lblValueType
+            // 
+            this.lblValueType.AutoSize = true;
+            this.lblValueType.Location = new System.Drawing.Point(203, 122);
+            this.lblValueType.Name = "lblValueType";
+            this.lblValueType.Size = new System.Drawing.Size(61, 13);
+            this.lblValueType.TabIndex = 21;
+            this.lblValueType.Text = "Value Type";
+            // 
+            // cbValueType
+            // 
+            this.cbValueType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbValueType.FormattingEnabled = true;
+            this.cbValueType.Items.AddRange(new object[] {
+            "u8",
+            "u16",
+            "u32",
+            "u64"});
+            this.cbValueType.Location = new System.Drawing.Point(266, 120);
+            this.cbValueType.Name = "cbValueType";
+            this.cbValueType.Size = new System.Drawing.Size(191, 21);
+            this.cbValueType.TabIndex = 22;
+            // 
+            // lblDisplayAmount
+            // 
+            this.lblDisplayAmount.AutoSize = true;
+            this.lblDisplayAmount.Location = new System.Drawing.Point(203, 149);
+            this.lblDisplayAmount.Name = "lblDisplayAmount";
+            this.lblDisplayAmount.Size = new System.Drawing.Size(41, 13);
+            this.lblDisplayAmount.TabIndex = 23;
+            this.lblDisplayAmount.Text = "Display";
+            // 
+            // txtDisplayAmount
+            // 
+            this.txtDisplayAmount.Location = new System.Drawing.Point(266, 146);
+            this.txtDisplayAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDisplayAmount.Name = "txtDisplayAmount";
+            this.txtDisplayAmount.Size = new System.Drawing.Size(191, 20);
+            this.txtDisplayAmount.TabIndex = 24;
+            this.txtDisplayAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDisplayAmount_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(263, 168);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Between 100-10000";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 315);
+            this.ClientSize = new System.Drawing.Size(470, 546);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtDisplayAmount);
+            this.Controls.Add(this.lblDisplayAmount);
+            this.Controls.Add(this.cbValueType);
+            this.Controls.Add(this.lblValueType);
             this.Controls.Add(this.btnDisconnect);
             this.Controls.Add(this.btnRemoveAddress);
             this.Controls.Add(this.btnAddAddress);
             this.Controls.Add(this.lblCountFound);
-            this.Controls.Add(this.lblFound);
             this.Controls.Add(this.lvStoredAddresses);
             this.Controls.Add(this.lvAddress);
             this.Controls.Add(this.btnConnectSwitch);
-            this.Controls.Add(this.gbValueSize);
             this.Controls.Add(this.lblValue);
             this.Controls.Add(this.btnNewSearch);
             this.Controls.Add(this.btnSearch);
@@ -440,12 +416,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
-            this.Text = "SysNetCheatGUI";
+            this.Text = "SysNetCheatGUI v1.0.13.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.gbValueSize.ResumeLayout(false);
-            this.gbValueSize.PerformLayout();
             this.cmsStoredAddress.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -461,11 +435,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnNewSearch;
         private System.Windows.Forms.Label lblValue;
-        private System.Windows.Forms.GroupBox gbValueSize;
-        private System.Windows.Forms.RadioButton radU64;
-        private System.Windows.Forms.RadioButton radU32;
-        private System.Windows.Forms.RadioButton radU16;
-        private System.Windows.Forms.RadioButton radU8;
         private System.Windows.Forms.Button btnConnectSwitch;
         private System.Windows.Forms.ColumnHeader colAddress;
         private System.Windows.Forms.ColumnHeader colValue;
@@ -479,7 +448,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.Label lblFound;
         public System.Windows.Forms.TextBox txtValue;
         public System.Windows.Forms.ListView lvAddress;
         public System.Windows.Forms.Label lblCountFound;
@@ -487,10 +455,15 @@
         private System.Windows.Forms.Button btnAddAddress;
         private System.Windows.Forms.Button btnRemoveAddress;
         private System.Windows.Forms.ContextMenuStrip cmsStoredAddress;
-        private System.Windows.Forms.ToolStripMenuItem editNameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editDescriptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editValueToolStripMenuItem;
         private System.Windows.Forms.Button btnDisconnect;
         private System.Windows.Forms.ToolStripMenuItem deleteAddressToolStripMenuItem;
+        private System.Windows.Forms.Label lblValueType;
+        private System.Windows.Forms.ComboBox cbValueType;
+        private System.Windows.Forms.Label lblDisplayAmount;
+        public System.Windows.Forms.TextBox txtDisplayAmount;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -16,7 +16,7 @@ namespace SysNetCheatGUI
         public string Address = "";
         public string Value = "";
         public string ValueSize = "";
-
+        public bool PokeAddress = false;
         public FrmAddAddress()
         {
             InitializeComponent();
@@ -27,8 +27,12 @@ namespace SysNetCheatGUI
             AddressName = txtName.Text;
             Address = txtAddress.Text;
             Value = txtValue.Text;
-            ValueSize = GetSearchSize();
-            if (ValueSize != "X_X")
+            ValueSize = SearchSize;
+            if (cbPoke.Checked)
+            {
+                PokeAddress = true;
+            }
+            if (ValueSize != "0")
             {
                 DialogResult = DialogResult.OK;
             }
@@ -39,17 +43,29 @@ namespace SysNetCheatGUI
             DialogResult = DialogResult.Cancel;
         }
 
-        private string GetSearchSize()
+        private string SearchSize
         {
-            if (radU8.Checked)
-                return "u8";
-            if (radU16.Checked)
-                return "u16";
-            if (radU32.Checked)
-                return "u32";
-            if (radU64.Checked)
-                return "u64";
-            return "X_X";
+            get
+            {
+                string valueType = "0";
+                switch (cbValueType.SelectedIndex)
+                {
+                    case 0:
+                        valueType = "u8";
+                        break;
+                    case 1:
+                        valueType = "u16";
+                        break;
+                    case 2:
+                        valueType = "u32";
+                        break;
+                    case 3:
+                        valueType = "u64";
+                        break;
+                }
+
+                return valueType;
+            }
         }
     }
 }
