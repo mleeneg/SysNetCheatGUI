@@ -33,7 +33,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.cbValueType = new System.Windows.Forms.ComboBox();
@@ -47,9 +47,9 @@
             this.label1.Location = new System.Drawing.Point(9, 7);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Name";
+            this.label1.Text = "Description";
             // 
             // label2
             // 
@@ -64,16 +64,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 91);
+            this.label4.Location = new System.Drawing.Point(9, 87);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Value";
+            this.label4.Text = "AddressValue";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(141, 109);
+            this.btnAdd.Location = new System.Drawing.Point(159, 109);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(56, 19);
@@ -84,7 +84,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(202, 109);
+            this.btnCancel.Location = new System.Drawing.Point(220, 109);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(56, 19);
@@ -93,17 +93,17 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtName
+            // txtDescription
             // 
-            this.txtName.Location = new System.Drawing.Point(93, 3);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(165, 20);
-            this.txtName.TabIndex = 6;
+            this.txtDescription.Location = new System.Drawing.Point(111, 3);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(165, 20);
+            this.txtDescription.TabIndex = 6;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(93, 31);
+            this.txtAddress.Location = new System.Drawing.Point(111, 31);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(165, 20);
@@ -111,7 +111,7 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(93, 84);
+            this.txtValue.Location = new System.Drawing.Point(111, 84);
             this.txtValue.Margin = new System.Windows.Forms.Padding(2);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(165, 20);
@@ -126,7 +126,7 @@
             "u16",
             "u32",
             "u64"});
-            this.cbValueType.Location = new System.Drawing.Point(93, 58);
+            this.cbValueType.Location = new System.Drawing.Point(111, 58);
             this.cbValueType.Name = "cbValueType";
             this.cbValueType.Size = new System.Drawing.Size(165, 21);
             this.cbValueType.TabIndex = 24;
@@ -155,13 +155,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 131);
+            this.ClientSize = new System.Drawing.Size(282, 131);
             this.Controls.Add(this.cbPoke);
             this.Controls.Add(this.cbValueType);
             this.Controls.Add(this.lblValueType);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label4);
@@ -186,7 +186,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.ComboBox cbValueType;

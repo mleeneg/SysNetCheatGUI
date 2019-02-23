@@ -41,18 +41,20 @@
             this.colAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvStoredAddresses = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cFreeze = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cValueType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmsStoredAddress = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editDescriptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblCountFound = new System.Windows.Forms.Label();
@@ -64,6 +66,8 @@
             this.lblDisplayAmount = new System.Windows.Forms.Label();
             this.txtDisplayAmount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.cmsStoredAddress.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -173,12 +177,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvStoredAddresses.CheckBoxes = true;
             this.lvStoredAddresses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader2,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader1});
+            this.cFreeze,
+            this.cID,
+            this.cDescription,
+            this.cValueType,
+            this.cAddress,
+            this.cValue});
             this.lvStoredAddresses.ContextMenuStrip = this.cmsStoredAddress;
             this.lvStoredAddresses.FullRowSelect = true;
             this.lvStoredAddresses.GridLines = true;
@@ -197,34 +201,34 @@
             this.lvStoredAddresses.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseDown);
             this.lvStoredAddresses.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvStoredAddresses_MouseUp);
             // 
-            // columnHeader4
+            // cFreeze
             // 
-            this.columnHeader4.Text = "";
-            this.columnHeader4.Width = 25;
+            this.cFreeze.Text = "";
+            this.cFreeze.Width = 25;
             // 
-            // columnHeader2
+            // cID
             // 
-            this.columnHeader2.Text = "ID";
-            this.columnHeader2.Width = 50;
+            this.cID.Text = "ID";
+            this.cID.Width = 50;
             // 
-            // columnHeader5
+            // cDescription
             // 
-            this.columnHeader5.Text = "Address";
-            this.columnHeader5.Width = 100;
+            this.cDescription.Text = "Description";
+            this.cDescription.Width = 130;
             // 
-            // columnHeader6
+            // cValueType
             // 
-            this.columnHeader6.Text = "Description";
-            this.columnHeader6.Width = 130;
+            this.cValueType.Text = "ValueType";
+            this.cValueType.Width = 86;
             // 
-            // columnHeader7
+            // cAddress
             // 
-            this.columnHeader7.Text = "Value Size";
-            this.columnHeader7.Width = 86;
+            this.cAddress.Text = "Address";
+            this.cAddress.Width = 100;
             // 
-            // columnHeader1
+            // cValue
             // 
-            this.columnHeader1.Text = "Value";
+            this.cValue.Text = "Value";
             // 
             // cmsStoredAddress
             // 
@@ -234,26 +238,26 @@
             this.editValueToolStripMenuItem,
             this.deleteAddressToolStripMenuItem});
             this.cmsStoredAddress.Name = "cmsStoredAddress";
-            this.cmsStoredAddress.Size = new System.Drawing.Size(181, 92);
+            this.cmsStoredAddress.Size = new System.Drawing.Size(168, 70);
             // 
             // editDescriptionToolStripMenuItem
             // 
             this.editDescriptionToolStripMenuItem.Name = "editDescriptionToolStripMenuItem";
-            this.editDescriptionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editDescriptionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.editDescriptionToolStripMenuItem.Text = "Edit Description";
             this.editDescriptionToolStripMenuItem.Click += new System.EventHandler(this.editDescriptionToolStripMenuItem_Click);
             // 
             // editValueToolStripMenuItem
             // 
             this.editValueToolStripMenuItem.Name = "editValueToolStripMenuItem";
-            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editValueToolStripMenuItem.Text = "Edit Value";
+            this.editValueToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.editValueToolStripMenuItem.Text = "Edit AddressValue";
             this.editValueToolStripMenuItem.Click += new System.EventHandler(this.editValueToolStripMenuItem_Click);
             // 
             // deleteAddressToolStripMenuItem
             // 
             this.deleteAddressToolStripMenuItem.Name = "deleteAddressToolStripMenuItem";
-            this.deleteAddressToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteAddressToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.deleteAddressToolStripMenuItem.Text = "Delete Address";
             this.deleteAddressToolStripMenuItem.Click += new System.EventHandler(this.DeleteAddressToolStripMenuItem_Click);
             // 
@@ -273,15 +277,31 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -385,6 +405,14 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "Between 100-10000";
             // 
+            // OpenFileDialog
+            // 
+            this.OpenFileDialog.Filter = "Code Files|*.json|All Files|*.*";
+            // 
+            // SaveFileDialog
+            // 
+            this.SaveFileDialog.Filter = "Code File|*.json";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,7 +444,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
-            this.Text = "SysNetCheatGUI v1.0.13.0";
+            this.Text = "SysNetCheatGUI v1.0.14.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
@@ -438,12 +466,11 @@
         private System.Windows.Forms.Button btnConnectSwitch;
         private System.Windows.Forms.ColumnHeader colAddress;
         private System.Windows.Forms.ColumnHeader colValue;
-        private System.Windows.Forms.ListView lvStoredAddresses;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader cFreeze;
+        private System.Windows.Forms.ColumnHeader cAddress;
+        private System.Windows.Forms.ColumnHeader cDescription;
+        private System.Windows.Forms.ColumnHeader cValueType;
+        private System.Windows.Forms.ColumnHeader cValue;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
@@ -451,7 +478,7 @@
         public System.Windows.Forms.TextBox txtValue;
         public System.Windows.Forms.ListView lvAddress;
         public System.Windows.Forms.Label lblCountFound;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader cID;
         private System.Windows.Forms.Button btnAddAddress;
         private System.Windows.Forms.Button btnRemoveAddress;
         private System.Windows.Forms.ContextMenuStrip cmsStoredAddress;
@@ -464,6 +491,11 @@
         private System.Windows.Forms.Label lblDisplayAmount;
         public System.Windows.Forms.TextBox txtDisplayAmount;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialog;
+        private System.Windows.Forms.SaveFileDialog SaveFileDialog;
+        public System.Windows.Forms.ListView lvStoredAddresses;
     }
 }
 

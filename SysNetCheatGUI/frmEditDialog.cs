@@ -12,7 +12,87 @@ namespace SysNetCheatGUI
 {
     public partial class FrmEditDialog : Form
     {
-        public string Value = "";
+        private string _addressValue;
+        public string ValueType;
+
+        public string AddressValue
+        {
+            get { return _addressValue; }
+            set
+            {
+                try
+                {
+                    long num = 0;
+                    switch (this.ValueType)
+                    {
+                        case "u8":
+                            num = int.Parse(value);
+                            if (num >= 255)
+                            {
+                                num = 255;
+                                _addressValue = num.ToString();
+                            }
+                            else
+                            {
+                                _addressValue = num.ToString();
+                            }
+                            break;
+                        case "u16":
+                            num = int.Parse(value);
+                            if (num >= ushort.MaxValue)
+                            {
+                                num = ushort.MaxValue;
+                                _addressValue = num.ToString();
+                            }
+                            else
+                            {
+                                _addressValue = num.ToString();
+                            }
+                            break;
+                        case "u32":
+                            num = Int32.Parse(value);
+                            if (num >= uint.MaxValue)
+                            {
+                                num = uint.MaxValue;
+                                _addressValue = num.ToString();
+                            }
+                            else
+                            {
+                                _addressValue = num.ToString();
+                            }
+                            break;
+                        case "u64":
+                            num = Int64.Parse(value);
+                            if (num >= Convert.ToInt64(ulong.MaxValue))
+                            {
+                                num = Convert.ToInt64(ulong.MaxValue);
+                                _addressValue = num.ToString();
+                            }
+                            else
+                            {
+                                _addressValue = num.ToString();
+                            }
+                            break;
+                        default:
+                            num = Int32.Parse(value);
+                            if (num >= uint.MaxValue)
+                            {
+                                num = uint.MaxValue;
+                                _addressValue = num.ToString();
+                            }
+                            else
+                            {
+                                _addressValue = num.ToString();
+                            }
+                            break;
+                    }
+                }
+                catch
+                {
+                    _addressValue = "0";
+                }
+            }
+        }
 
         public FrmEditDialog(string labeltext)
         {
@@ -22,7 +102,7 @@ namespace SysNetCheatGUI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Value = txtValue.Text;
+            AddressValue = txtValue.Text;
             DialogResult = DialogResult.OK;
         }
 
