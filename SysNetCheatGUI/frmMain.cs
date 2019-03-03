@@ -146,6 +146,31 @@ namespace SysNetCheatGUI
             }
         }
 
+        private string PeekSize
+        {
+            get
+            {
+                var valueType = "0";
+                switch (peekValueType.SelectedIndex)
+                {
+                    case 0:
+                        valueType = "u8";
+                        break;
+                    case 1:
+                        valueType = "u16";
+                        break;
+                    case 2:
+                        valueType = "u32";
+                        break;
+                    case 3:
+                        valueType = "u64";
+                        break;
+                }
+
+                return valueType;
+            }
+        }
+
         private void btnConnectSwitch_Click(object sender, EventArgs e)
         {
             //if MySwitch does not exist
@@ -299,6 +324,9 @@ namespace SysNetCheatGUI
                 ObjectInvokeEnable(btnRemoveAddress, offOn);
                 ObjectInvokeEnable(cbValueType, offOn);
                 ObjectInvokeEnable(txtDisplayAmount, offOn);
+                ObjectInvokeEnable(btnPeek, offOn);
+                ObjectInvokeEnable(txtPeekAddress, offOn);
+                ObjectInvokeEnable(peekValueType, offOn);
             }
             else
             {
@@ -312,6 +340,9 @@ namespace SysNetCheatGUI
                 btnRemoveAddress.Enabled = offOn;
                 cbValueType.Enabled = offOn;
                 txtDisplayAmount.Enabled = offOn;
+                btnPeek.Enabled = offOn;
+                txtPeekAddress.Enabled = offOn;
+                peekValueType.Enabled = offOn;
             }
         }
 
@@ -721,6 +752,39 @@ namespace SysNetCheatGUI
                     serializer.Formatting = Formatting.Indented;
                     serializer.Serialize(file, _data);
                 }
+            }
+        }
+
+        private void btnPeek_Click(object sender, EventArgs e)
+        {
+            //Set ClickPeek to true
+            MySwitch.ClickedPeek = true;
+            labelPeekStatus.Text = "";
+
+            bool isHex = true;
+            //if GetSearchSize doesn't return Invalid response
+            foreach (char letter in txtPeekAddress.Text) {
+                if (!System.Uri.IsHexDigit(letter))
+                    isHex = false;
+            }
+            if (PeekSize != "0" && isHex && txtPeekAddress.Text != String.Empty)
+                OkayToStartSearch = true;
+            else
+                MessageBox.Show("Search Not Valid!");
+
+            var address = txtPeekAddress.Text.Trim();
+
+            //If txtPeekAddress.Text is not Null/Empty/Blank
+            if (!txtPeekAddress.Text.Trim().Equals(""))
+            {
+                //if both are true
+                if (!MySwitch.SwitchClient.Connected || !OkayToStartSearch) return;
+                //Send MakeCommandString
+                MySwitch.SendCommand(Commands.PeekAddress, "", address, PeekSize, "");
+            }
+            else
+            {
+                MessageBox.Show("AddressValue Must Be Entered!");
             }
         }
     }
