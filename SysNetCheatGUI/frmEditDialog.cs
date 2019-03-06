@@ -10,11 +10,24 @@ using System.Windows.Forms;
 
 namespace SysNetCheatGUI
 {
+    public enum MessageType
+    {
+        Address= 0,
+        AddressValue = 1,
+        Description = 2
+    }
+
     public partial class FrmEditDialog : Form
     {
         private string _addressValue;
-        public string ValueType;
+        private string _address;
+        private string _description;
 
+        public MessageType MessageType;
+        public string OutputValue;
+        public string ValueType;
+        public string Address { get; set; }
+        public string Description { get; set; }
         public string AddressValue
         {
             get { return _addressValue; }
@@ -94,15 +107,69 @@ namespace SysNetCheatGUI
             }
         }
 
-        public FrmEditDialog(string labeltext)
+        public FrmEditDialog(MessageType messageType)
         {
             InitializeComponent();
-            lblText.Text = labeltext;
+            MessageType = messageType;
+            switch (MessageType)
+            {
+                case MessageType.Address:
+                    lblText.Text = "Edit Address";
+                    cbPoke.Visible = false;
+                    break;
+                case MessageType.AddressValue:
+                    lblText.Text = "Edit Address Value";
+                    cbPoke.Visible = true;
+                    break;
+                case MessageType.Description:
+                    lblText.Text = "Edit Description";
+                    cbPoke.Visible = false;
+                    break;
+            }
         }
+
+        public FrmEditDialog(MessageType messageType, string vType)
+        {
+            InitializeComponent();
+            MessageType = messageType;
+            ValueType = vType;
+            switch (MessageType)
+            {
+                case MessageType.Address:
+                    lblText.Text = "Edit Address";
+                    cbPoke.Visible = false;
+                    break;
+                case MessageType.AddressValue:
+                    lblText.Text = "Edit Address Value";
+                    cbPoke.Visible = true;
+                    break;
+                case MessageType.Description:
+                    lblText.Text = "Edit Description";
+                    cbPoke.Visible = false;
+                    break;
+            }
+        }
+
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            AddressValue = txtValue.Text;
+            //check value
+            switch (MessageType)
+            {
+                case MessageType.Address:
+                    Address = txtValue.Text;
+                    OutputValue = Address;
+                    break;
+                case MessageType.AddressValue:
+                    AddressValue = txtValue.Text;
+                    OutputValue = AddressValue;
+                    break;
+                case MessageType.Description:
+                    Description = txtValue.Text;
+                    OutputValue = Description;
+                    break;
+            }
+
             DialogResult = DialogResult.OK;
         }
 

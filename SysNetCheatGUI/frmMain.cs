@@ -335,10 +335,8 @@ namespace SysNetCheatGUI
         {
             var index = lvAddress.SelectedIndex();
 
-            using (var editValue = new FrmEditDialog(_editValue))
+            using (var editValue = new FrmEditDialog(MessageType.AddressValue, cbValueType.Text))
             {
-                editValue.ValueType = cbValueType.Text;
-                editValue.cbPoke.Visible = true;
                 if (editValue.ShowDialog() == DialogResult.OK)
                 {
                     //Check if address exist
@@ -359,7 +357,7 @@ namespace SysNetCheatGUI
                             {
                                 found = true;
                                 //Edit Existing Address
-                                lvStoredAddresses.Items[i].SubItems[GetColumnID(lvStoredAddresses, "cValue")].Text = editValue.AddressValue;
+                                lvStoredAddresses.Items[i].SubItems[GetColumnID(lvStoredAddresses, "cValue")].Text = editValue.OutputValue;
                                 break;
                             }
                         }
@@ -367,13 +365,13 @@ namespace SysNetCheatGUI
                         if (!found)
                             lvStoredAddresses.Items.Add(AddListViewItem(
                                 lvAddress.Items[index].SubItems[GetColumnID(lvAddress, "colAddress")].Text, "", SearchSize,
-                                editValue.AddressValue));
+                                editValue.OutputValue));
                     }
                     else
                     {
                         //Else Add a new Address
                         lvStoredAddresses.Items.Add(AddListViewItem(lvAddress.Items[index].SubItems[GetColumnID(lvAddress, "colAddress")].Text, "",
-                            SearchSize, editValue.AddressValue));
+                            SearchSize, editValue.OutputValue));
                     }
                 }
 
@@ -381,7 +379,7 @@ namespace SysNetCheatGUI
                 {
                     MySwitch.SendCommand(Commands.PokeAddress, "",
                         lvAddress.Items[index].SubItems[GetColumnID(lvAddress, "colAddress")].Text,
-                        SearchSize, editValue.AddressValue);
+                        SearchSize, editValue.OutputValue);
                 }
             }
         }
@@ -472,20 +470,18 @@ namespace SysNetCheatGUI
             try
             {
                 if (lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cAddress")].Text == "") return;
-                using (var editValue = new FrmEditDialog(_editValue))
+                using (var editValue = new FrmEditDialog(MessageType.AddressValue, lvStoredAddresses.Items[index]
+                    .SubItems[GetColumnID(lvStoredAddresses, "cValueType")].Text))
                 {
-                    editValue.ValueType = lvStoredAddresses.Items[index]
-                        .SubItems[GetColumnID(lvStoredAddresses, "cValueType")].Text;
-                    editValue.cbPoke.Visible = true;
                     if (editValue.ShowDialog() != DialogResult.OK) return;
                     //Edit Existing Address
-                    lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cValue")].Text = editValue.AddressValue;
+                    lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cValue")].Text = editValue.OutputValue;
 
                     if (editValue.cbPoke.Checked)
                     {
                         MySwitch.SendCommand(Commands.PokeAddress, "",
                             lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cAddress")].Text,
-                            SearchSize, editValue.AddressValue);
+                            SearchSize, editValue.OutputValue);
                     }
                 }
             }
@@ -501,10 +497,10 @@ namespace SysNetCheatGUI
             try
             {
                 if (lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cAddress")].Text == "") return;
-                using (var editValue = new FrmEditDialog(_editName))
+                using (var editValue = new FrmEditDialog(MessageType.Description))
                 {
                     if (editValue.ShowDialog() == DialogResult.OK)
-                        lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cDescription")].Text = editValue.AddressValue;
+                        lvStoredAddresses.Items[index].SubItems[GetColumnID(lvStoredAddresses, "cDescription")].Text = editValue.OutputValue;
                 }
             }
             catch (ArgumentOutOfRangeException)
