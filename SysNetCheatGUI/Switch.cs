@@ -15,10 +15,11 @@ namespace SysNetCheatGUI
         StartSearch = 0,
         ContinueSearch = 1,
         PokeAddress = 2,
-        FreezeAddress = 3,
-        ListAddress = 4,
-        ReleaseFreeze = 5,
-        UnFreezeAddress = 6
+        PeekAddress = 3,
+        FreezeAddress = 4,
+        ListAddress = 5,
+        ReleaseFreeze = 6,
+        UnFreezeAddress = 7
     }
 
     public class Switch
@@ -32,6 +33,8 @@ namespace SysNetCheatGUI
 
         //Regex address format: Get numbers and letters a-f that are 8 characters or higher
         private readonly Regex _r = new Regex(@"[0-9a-fA-F]{8,}");
+        //Regex values after "> The Value is" that are hex style characters.
+        private readonly Regex peek_r = new Regex("(?<=> Value is )[0-9aA-Fa-f]*");
         private readonly StringBuilder _sbAddresses = new StringBuilder();
 
         private string _searchValue;
@@ -39,6 +42,7 @@ namespace SysNetCheatGUI
         //Get Client Stream for Reading and Writing
         private NetworkStream _stream;
         public bool ClickedSearch;
+        public bool ClickedPeek;
 
         public int DisplayAmount = 1000;
 
@@ -111,13 +115,17 @@ namespace SysNetCheatGUI
                     _sbAddresses.Append(getBuffer);
                     if (!_sbAddresses.ToString().Contains("> ")) continue;
                     Debug.Write("EOF");
-                    GetAddressesFromConsole();
+                    GetResponseFromConsole();
                     //_shouldStop = true;
                     //_listen.Join();
                 }
             }
             catch
             {
+                _mainForm.Invoke(new Action(() =>
+                {
+                    _mainForm.labelPeekStatus.Text = "";
+                }));
                 Disconnect(false);
             }
         }
@@ -125,7 +133,7 @@ namespace SysNetCheatGUI
         /// <summary>
         ///     Get Addresses from console
         /// </summary>
-        private void GetAddressesFromConsole()
+        private void GetResponseFromConsole()
         {
             //Get Searched AddressValue
             _searchValue = _mainForm.txtValue.Text;
@@ -133,6 +141,7 @@ namespace SysNetCheatGUI
             //Turn off reading of Console.
             ReadDisplay = false;
             //If Search button was presses
+            //GetAddressesFromConsole
             if (ClickedSearch)
             {
                 //Get Matches
@@ -160,6 +169,16 @@ namespace SysNetCheatGUI
                 }
 
                 ClickedSearch = false;
+            }
+            if (ClickedPeek)
+            {
+                var matched = peek_r.Matches(_sbAddresses.ToString());
+                var response = matched[0].ToString();
+                _mainForm.Invoke(new Action(() =>
+                {
+                    _mainForm.labelPeekStatus.Text = $"Found! {response}";
+                }));
+                ClickedPeek = false;
             }
         }
 
@@ -195,6 +214,8 @@ namespace SysNetCheatGUI
                     return $"csearch {value}\n";
                 case Commands.PokeAddress:
                     return $"poke {address} {valueType} {value}\n";
+                case Commands.PeekAddress:
+                    return $"peek {address} {valueType}\n";
                 case Commands.FreezeAddress:
                     return $"afreeze {address} {valueType} {value}\n";
                 case Commands.ListAddress:
@@ -217,6 +238,8 @@ namespace SysNetCheatGUI
                     return $"csearch {value}\n";
                 case Commands.PokeAddress:
                     return $"poke {address} {valueSize} {value}\n";
+                case Commands.PeekAddress:
+                    return $"peek {address} {valueSize}\n";
                 case Commands.FreezeAddress:
                     return $"afreeze {address} {valueSize} {value}\n";
                 case Commands.ListAddress:

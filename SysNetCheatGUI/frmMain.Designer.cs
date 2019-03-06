@@ -68,6 +68,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.labelPeekAddress = new System.Windows.Forms.Label();
+            this.btnPeek = new System.Windows.Forms.Button();
+            this.labelPeekValueType = new System.Windows.Forms.Label();
+            this.txtPeekAddress = new System.Windows.Forms.TextBox();
+            this.peekValueType = new System.Windows.Forms.ComboBox();
+            this.labelPeekStatus = new System.Windows.Forms.Label();
             this.cmsStoredAddress.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -413,11 +419,73 @@
             // 
             this.SaveFileDialog.Filter = "Code File|*.json";
             // 
+            // labelPeekAddress
+            // 
+            this.labelPeekAddress.AutoSize = true;
+            this.labelPeekAddress.Location = new System.Drawing.Point(206, 218);
+            this.labelPeekAddress.Name = "labelPeekAddress";
+            this.labelPeekAddress.Size = new System.Drawing.Size(45, 13);
+            this.labelPeekAddress.TabIndex = 26;
+            this.labelPeekAddress.Text = "Address";
+            // 
+            // btnPeek
+            // 
+            this.btnPeek.Location = new System.Drawing.Point(206, 193);
+            this.btnPeek.Name = "btnPeek";
+            this.btnPeek.Size = new System.Drawing.Size(75, 19);
+            this.btnPeek.TabIndex = 27;
+            this.btnPeek.Text = "Peek";
+            this.btnPeek.UseVisualStyleBackColor = true;
+            this.btnPeek.Click += new System.EventHandler(this.btnPeek_Click);
+            // 
+            // labelPeekValueType
+            // 
+            this.labelPeekValueType.AutoSize = true;
+            this.labelPeekValueType.Location = new System.Drawing.Point(206, 243);
+            this.labelPeekValueType.Name = "labelPeekValueType";
+            this.labelPeekValueType.Size = new System.Drawing.Size(61, 13);
+            this.labelPeekValueType.TabIndex = 28;
+            this.labelPeekValueType.Text = "Value Type";
+            // 
+            // txtPeekAddress
+            // 
+            this.txtPeekAddress.Location = new System.Drawing.Point(266, 215);
+            this.txtPeekAddress.Name = "txtPeekAddress";
+            this.txtPeekAddress.Size = new System.Drawing.Size(192, 20);
+            this.txtPeekAddress.TabIndex = 29;
+            // 
+            // peekValueType
+            // 
+            this.peekValueType.FormattingEnabled = true;
+            this.peekValueType.Items.AddRange(new object[] {
+            "u8",
+            "u16",
+            "u32",
+            "u64"});
+            this.peekValueType.Location = new System.Drawing.Point(266, 240);
+            this.peekValueType.Name = "peekValueType";
+            this.peekValueType.Size = new System.Drawing.Size(192, 21);
+            this.peekValueType.TabIndex = 30;
+            // 
+            // labelPeekStatus
+            // 
+            this.labelPeekStatus.AutoSize = true;
+            this.labelPeekStatus.Location = new System.Drawing.Point(289, 196);
+            this.labelPeekStatus.Name = "labelPeekStatus";
+            this.labelPeekStatus.Size = new System.Drawing.Size(0, 13);
+            this.labelPeekStatus.TabIndex = 31;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 546);
+            this.Controls.Add(this.labelPeekStatus);
+            this.Controls.Add(this.peekValueType);
+            this.Controls.Add(this.txtPeekAddress);
+            this.Controls.Add(this.labelPeekValueType);
+            this.Controls.Add(this.btnPeek);
+            this.Controls.Add(this.labelPeekAddress);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDisplayAmount);
             this.Controls.Add(this.lblDisplayAmount);
@@ -496,6 +564,12 @@
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;
         public System.Windows.Forms.ListView lvStoredAddresses;
+        private System.Windows.Forms.Label labelPeekAddress;
+        private System.Windows.Forms.Button btnPeek;
+        private System.Windows.Forms.Label labelPeekValueType;
+        private System.Windows.Forms.TextBox txtPeekAddress;
+        private System.Windows.Forms.ComboBox peekValueType;
+        public System.Windows.Forms.Label labelPeekStatus;
     }
 }
 
